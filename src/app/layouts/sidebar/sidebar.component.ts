@@ -1,15 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/user.model';
+import { AppState } from 'src/app/state/app.reducer';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
+  public auth!: User | null;
 
-  constructor() { }
+  private authSubs!: Subscription;
 
-  ngOnInit(): void {
+  get isAdmin() {
+    return this.auth?.role === 'ADMIN';
   }
 
+  constructor(private store: Store<AppState>) {}
+
+  ngOnInit(): void {
+    this.authSubs = this.store.select('auth').subscribe(({ user }) => {
+      this.auth = user;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.authSubs?.unsubscribe();
+  }
 }

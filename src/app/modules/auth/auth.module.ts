@@ -5,17 +5,18 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { AuthComponent } from './auth.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-  declarations: [
-    SigninComponent,
-    SignupComponent,
-    AuthComponent
-  ],
+  declarations: [SigninComponent, SignupComponent, AuthComponent],
   imports: [
     CommonModule,
-    AuthRoutingModule
-  ]
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    AngularMaterialModule,
+    FlexLayoutModule,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

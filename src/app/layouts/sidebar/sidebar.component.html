@@ -13,6 +13,7 @@
     [routerLink]="['/users']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
+    *ngIf="isAdmin"
   >
     USUARIOS
   </button>
