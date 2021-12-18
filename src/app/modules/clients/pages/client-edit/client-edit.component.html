@@ -1,0 +1,8 @@
+<div class="edit_title_container">
+  <h2>Modifica este cliente</h2>
+  <button mat-raised-button color="primary" routerLink="../view">VOLVER</button>
+</div>
+
+<ng-container *ngIf="client">
+  <app-client-form [client]="client"></app-client-form>
+</ng-container>
