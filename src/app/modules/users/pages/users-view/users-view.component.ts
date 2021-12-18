@@ -14,6 +14,7 @@ import { AppState } from 'src/app/state/app.reducer';
 })
 export class UsersViewComponent implements OnInit {
   public user!: User;
+  public phones: string[] = [];
 
   constructor(
     private store: Store<AppState>,
@@ -27,6 +28,7 @@ export class UsersViewComponent implements OnInit {
       .pipe(switchMap(({ id }) => this.userService.getOne(id)))
       .subscribe((user) => {
         this.user = user;
+        this.phones = JSON.parse(user.profile.phones!) || [];
         this.store.dispatch(stopLoading());
       });
   }

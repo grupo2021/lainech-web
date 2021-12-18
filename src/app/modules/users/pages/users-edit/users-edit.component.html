@@ -1,1 +1,3 @@
-<p>users-edit works!</p>
+<ng-container *ngIf="user">
+  <app-user-profile-form [user]="user"></app-user-profile-form>
+</ng-container>

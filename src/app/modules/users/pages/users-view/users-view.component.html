@@ -1,16 +1,37 @@
 <mat-card *ngIf="user" style="margin-top: 1rem">
   <mat-card-header>
     <mat-card-title>{{ user.name }}</mat-card-title>
-    <mat-card-subtitle>{{ user.createdAt | date }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ user.role }}</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content>
-    {{ user.email }}
-    <h2>Datos personales</h2>
-    {{ user.profile.phones }}
-  </mat-card-content>
+  <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="16px">
+    <div class="image_container">
+      <img [src]="user.profile.photo" alt="photo" *ngIf="user.profile.photo" />
+      <img src="assets/no-user.svg" alt="photo" *ngIf="!user.profile.photo" />
+    </div>
+    <mat-card-content>
+      <h2>Datos personales</h2>
+      <p><strong>C.I: </strong> {{ user.profile.identificationNumber }}</p>
+      <p><strong>EMAIL: </strong> {{ user.email }}</p>
+      <p><strong>DIRECCION: </strong> {{ user.profile.address }}</p>
+      <p><strong>TELEFONOS: </strong></p>
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip *ngFor="let phone of phones">
+          {{ phone }}
+        </mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+  </div>
+
   <mat-card-actions>
-    <button mat-raised-button color="primary" routerLink="../edit">
-      EDITAR
-    </button>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="../edit"
+        style="width: 10rem"
+      >
+        EDITAR
+      </button>
+    </div>
   </mat-card-actions>
 </mat-card>

@@ -1,0 +1,87 @@
+<h2 style="margin-top: 1rem; margin-left: 10%">Datos de usuario</h2>
+
+<form
+  [formGroup]="form"
+  fxLayout="column"
+  fxLayoutAlign="start center"
+  fxLayoutGap="8px"
+>
+  <app-users-profile-photo formControlName="photo"></app-users-profile-photo>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="JUAN" type="text" formControlName="name" />
+    <mat-icon matSuffix color="primary">face</mat-icon>
+    <mat-hint>Campo obligatorio</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Apellidos</mat-label>
+    <input matInput placeholder="JUAN" type="text" formControlName="surname" />
+    <mat-icon matSuffix color="primary">face</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Dirección</mat-label>
+    <input matInput placeholder="JUAN" type="text" formControlName="address" />
+    <mat-icon matSuffix color="primary">home</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Carnet de Identidad</mat-label>
+    <input
+      matInput
+      placeholder="7624342CB"
+      type="text"
+      formControlName="identificationNumber"
+    />
+    <mat-icon matSuffix color="primary">tag</mat-icon>
+  </mat-form-field>
+
+  <div
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    fxLayoutGap="16px"
+    style="width: 80%"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Nuevo # telefono</mat-label>
+      <input
+        matInput
+        placeholder="70000000"
+        type="tel"
+        [formControl]="newPhone"
+      />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addPhone()">
+      Agregar
+    </button>
+  </div>
+
+  <div formArrayName="phones" style="width: 80%">
+    <mat-label>Telefonos:</mat-label>
+    <ng-container *ngIf="!user.profile.phones">
+      <p>No hay telefonos registrados</p>
+    </ng-container>
+
+    <ng-container *ngFor="let phone of phones.controls; let i = index">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        fxLayoutGap="16px"
+      >
+        <mat-form-field appearance="fill">
+          <mat-label>Telefono: {{ i + 1 }}</mat-label>
+          <input matInput type="tel" [formControlName]="i" />
+        </mat-form-field>
+        <button mat-raised-button color="warn" (click)="removePhone(i)">
+          Quitar
+        </button>
+      </div>
+    </ng-container>
+  </div>
+
+  <button type="button" (click)="onSubmit()" mat-raised-button color="primary">
+    Guardar
+  </button>
+</form>
