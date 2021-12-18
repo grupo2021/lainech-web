@@ -2,7 +2,8 @@ import { Profile } from './profile.model';
 
 export class User {
   public static fromJson(json: any) {
-    const { id, createdAt, updatedAt, name, email, profile, role } = json;
+    const { id, createdAt, updatedAt, name, email, status, profile, role } =
+      json;
 
     return new User(
       id,
@@ -10,6 +11,7 @@ export class User {
       updatedAt,
       name,
       email,
+      status,
       Profile.fromJson(profile),
       role
     );
@@ -21,6 +23,7 @@ export class User {
     public updatedAt: Date,
     public name: string,
     public email: string,
+    public status: string,
     public profile: Profile,
     public role: string
   ) {}
