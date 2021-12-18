@@ -14,15 +14,8 @@ const routes: Routes = [
     children: [
       { path: 'list', component: ProductListComponent },
       { path: 'new', component: ProductNewComponent },
-      {
-        path: ':id',
-        component: ProductViewComponent,
-        children: [
-          { path: 'detail', component: ProductDetailComponent },
-          { path: 'edit', component: ProductEditComponent },
-          { path: '', redirectTo: 'detail' },
-        ],
-      },
+      { path: ':id/view', component: ProductViewComponent },
+      { path: ':id/edit', component: ProductEditComponent },
       { path: '', redirectTo: 'list' },
     ],
   },

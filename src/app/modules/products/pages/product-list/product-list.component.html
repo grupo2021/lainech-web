@@ -1,1 +1,52 @@
-<p>product-list works!</p>
+<div class="expenses_container">
+  <h2>Lista de productos</h2>
+  <mat-form-field>
+    <input matInput placeholder="Buscador..." #keyword />
+  </mat-form-field>
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="name"
+    matSortDirection="asc"
+    matSortDisableClear
+  >
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        NOMBRE
+      </mat-header-cell>
+      <mat-cell *matCellDef="let product">
+        {{ product.name | uppercase }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef> CÓDIGO </mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.code }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="stock">
+      <mat-header-cell *matHeaderCellDef> STOCK</mat-header-cell>
+      <mat-cell *matCellDef="let product">
+        {{ product.stock | number: "1.0" }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      [routerLink]="['/products', row.id, 'view']"
+      *matRowDef="let row; columns: displayedColumns"
+    ></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [length]="dataSource.size$ | async"
+    [pageSize]="take"
+    [pageSizeOptions]="[5, 10, 15]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

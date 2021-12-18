@@ -2,20 +2,18 @@ import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-users-profile-photo',
-  templateUrl: './users-profile-photo.component.html',
-  styleUrls: ['./users-profile-photo.component.scss'],
+  selector: 'app-products-image',
+  templateUrl: './products-image.component.html',
+  styleUrls: ['./products-image.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => UsersProfilePhotoComponent),
+      useExisting: forwardRef(() => ProductsImageComponent),
       multi: true,
     },
   ],
 })
-export class UsersProfilePhotoComponent
-  implements OnInit, ControlValueAccessor
-{
+export class ProductsImageComponent implements OnInit, ControlValueAccessor {
   initialValue!: string | null;
   file!: File;
 

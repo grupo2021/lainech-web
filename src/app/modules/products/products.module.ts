@@ -8,7 +8,11 @@ import { ProductNewComponent } from './pages/product-new/product-new.component';
 import { ProductViewComponent } from './pages/product-view/product-view.component';
 import { ProductEditComponent } from './pages/product-edit/product-edit.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-
+import { ProductsFormComponent } from './components/products-form/products-form.component';
+import { ProductsImageComponent } from './components/products-image/products-image.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -17,11 +21,16 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     ProductNewComponent,
     ProductViewComponent,
     ProductEditComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductsFormComponent,
+    ProductsImageComponent,
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
-  ]
+    ProductsRoutingModule,
+    ReactiveFormsModule,
+    AngularMaterialModule,
+    FlexLayoutModule,
+  ],
 })
-export class ProductsModule { }
+export class ProductsModule {}

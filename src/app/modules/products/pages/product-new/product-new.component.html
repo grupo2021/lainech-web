@@ -1,1 +1,4 @@
-<p>product-new works!</p>
+<ng-container *ngIf="categories.length">
+  <h2 style="margin-top: 1rem; margin-left: 10%">Crea un nuevo producto</h2>
+  <app-products-form [categories]="categories"></app-products-form>
+</ng-container>

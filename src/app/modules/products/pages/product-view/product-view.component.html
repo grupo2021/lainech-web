@@ -1,1 +1,39 @@
-<p>product-view works!</p>
+<mat-card *ngIf="product" style="margin-top: 1rem">
+  <mat-card-header>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <mat-card-subtitle>{{ product.code }}</mat-card-subtitle>
+  </mat-card-header>
+  <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="16px">
+    <div class="image_container">
+      <img [src]="product.image" alt="photo" />
+    </div>
+    <mat-card-content>
+      <h2>Datos del producto</h2>
+      <p><strong>DESCRIPCIÓN: </strong> {{ product.description }}</p>
+      <p>
+        <strong>PRECIO BASE: </strong> {{ product.basePrice | currency: "Bs." }}
+      </p>
+      <p>
+        <strong>PRECIO DE VENTA: </strong>
+        {{ product.salePrice | currency: "Bs." }}
+      </p>
+      <p>
+        <strong>STOCK: </strong> {{ product.stock | number: "1.0" }} unidades.
+      </p>
+      <p><strong>CATEGORIA: </strong> {{ product.category.name }}</p>
+    </mat-card-content>
+  </div>
+
+  <mat-card-actions>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="../edit"
+        style="width: 10rem"
+      >
+        EDITAR
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

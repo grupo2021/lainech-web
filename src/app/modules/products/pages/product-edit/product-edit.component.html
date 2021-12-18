@@ -1,1 +1,13 @@
-<p>product-edit works!</p>
+<ng-container *ngIf="product && categories.length">
+  <div class="edit_title_container">
+    <h2>Modifica el producto</h2>
+    <button mat-raised-button color="primary" routerLink="../view">
+      VOLVER
+    </button>
+  </div>
+
+  <app-products-form
+    [categories]="categories"
+    [product]="product"
+  ></app-products-form>
+</ng-container>

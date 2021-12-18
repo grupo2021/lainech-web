@@ -1,0 +1,35 @@
+.expenses_container {
+  //   margin: 1.5rem;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+.mat-column-name {
+  flex: 0 0 32%;
+  justify-content: start;
+}
+
+.mat-column-email {
+  flex: 0 0 32%;
+  justify-content: start;
+}
+
+.mat-column-role {
+  flex: 0 0 15%;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.mat-column-status {
+  flex: 0 0 15%;
+  justify-content: center;
+  font-weight: bold;
+}
