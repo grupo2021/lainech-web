@@ -1,0 +1,18 @@
+<mat-toolbar
+  color="primary"
+  class="toolbar"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+>
+  <button mat-icon-button (click)="sidebarToogle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>LABORATORIO</span>
+  <button mat-icon-button [routerLink]="['/auth']" *ngIf="!isLogged">
+    <mat-icon>person</mat-icon>
+  </button>
+
+  <button mat-icon-button (click)="signout()" *ngIf="isLogged">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>

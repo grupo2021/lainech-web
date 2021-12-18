@@ -1,0 +1,19 @@
+<mat-nav-list fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="16px">
+  <button
+    mat-flat-button
+    [routerLink]="['/products']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+  >
+    PRODUCTOS
+  </button>
+
+  <button
+    mat-flat-button
+    [routerLink]="['/users']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+  >
+    USUARIOS
+  </button>
+</mat-nav-list>
