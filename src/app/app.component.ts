@@ -50,12 +50,15 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.store.dispatch(initLoading());
-    this.authSubs = this.authSerivce
-      .renew()
-      .subscribe(({ user, accessToken }) => {
+    this.authSubs = this.authSerivce.renew().subscribe({
+      next: ({ user, accessToken }) => {
         this.store.dispatch(setUser({ user, access_token: accessToken }));
         this.store.dispatch(stopLoading());
-      });
+      },
+      error: (error) => {
+        this.store.dispatch(stopLoading());
+      },
+    });
 
     this.userSubs = this.store.select('auth').subscribe(({ user }) => {
       this.auth = user;

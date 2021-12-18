@@ -8,9 +8,11 @@ import { UsersNewComponent } from './pages/users-new/users-new.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { UsersViewComponent } from './pages/users-view/users-view.component';
+import { UsersEditComponent } from './pages/users-edit/users-edit.component';
 
 @NgModule({
-  declarations: [UsersComponent, UsersListComponent, UsersNewComponent],
+  declarations: [UsersComponent, UsersListComponent, UsersNewComponent, UsersViewComponent, UsersEditComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

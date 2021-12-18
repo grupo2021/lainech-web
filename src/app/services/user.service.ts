@@ -32,4 +32,16 @@ export class UserService {
       }))
     );
   }
+
+  public getOne(id: number) {
+    return this.http
+      .get(`${this.url}/${id}`)
+      .pipe(map((res) => User.fromJson(res)));
+  }
+
+  public create(name: string, email: string, roleId: number, password: string) {
+    return this.http
+      .post(this.url, { name: name.toUpperCase(), email, roleId, password })
+      .pipe(map((res) => User.fromJson(res)));
+  }
 }

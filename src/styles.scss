@@ -17,3 +17,10 @@ body {
 h2 {
   color: #3f51b5;
 }
+
+form {
+  mat-form-field,
+  button {
+    width: 80%;
+  }
+}

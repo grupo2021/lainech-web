@@ -45,7 +45,7 @@
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row
-      [routerLink]="['/users', row.id]"
+      [routerLink]="['/users', row.id, 'view']"
       *matRowDef="let row; columns: displayedColumns"
     ></mat-row>
   </mat-table>

@@ -1,1 +1,69 @@
-<p>users-new works!</p>
+<h2 style="margin-left: 10%">Crea un nuevo usuario</h2>
+<form
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  fxLayout="column"
+  fxLayoutAlign="start center"
+  fxLayoutGap="8px"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="JUAN" type="text" formControlName="name" />
+    <mat-icon matSuffix color="primary">face</mat-icon>
+    <mat-hint>Campo obligatorio</mat-hint>
+    <mat-error *ngIf="invalidField('name')">{{ nameError }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      placeholder="juan1@mail.com"
+      type="email"
+      formControlName="email"
+    />
+    <mat-icon matSuffix color="primary">email</mat-icon>
+    <mat-hint>Campo obligatorio</mat-hint>
+    <mat-error *ngIf="invalidField('email')">{{ emailError }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Rol</mat-label>
+    <mat-select formControlName="roleId">
+      <mat-option [value]="role.id" *ngFor="let role of roles">
+        {{ role.name }}
+      </mat-option>
+    </mat-select>
+    <mat-hint>Campo obligatorio</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Contraseña</mat-label>
+    <input
+      matInput
+      placeholder="************"
+      type="password"
+      formControlName="password"
+    />
+    <mat-icon matSuffix color="primary">password</mat-icon>
+    <mat-hint>Minimo 6 caracteres</mat-hint>
+    <mat-error *ngIf="invalidField('password')">{{ passwordError }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Confirmacion</mat-label>
+    <input
+      matInput
+      placeholder="************"
+      type="password"
+      formControlName="password2"
+    />
+    <mat-icon matSuffix color="primary">password</mat-icon>
+    <mat-hint>Contraseña y confirmacion deben ser iguales</mat-hint>
+    <mat-error *ngIf="invalidField('password2')">
+      {{ confirmationError }}
+    </mat-error>
+  </mat-form-field>
+
+  <button type="submit" mat-raised-button color="primary">Guardar</button>
+</form>
