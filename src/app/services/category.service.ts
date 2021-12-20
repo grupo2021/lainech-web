@@ -37,4 +37,36 @@ export class CategoryService {
       .get<[]>(`${this.url}/no-pagination`)
       .pipe(map((res) => res.map((d) => Category.fromJson(d))));
   }
+
+  public findOne(id: number) {
+    return this.http
+      .get(`${this.url}/${id}`)
+      .pipe(map((res) => Category.fromJson(res)));
+  }
+
+  public create(name: string, code: string, description: string) {
+    return this.http
+      .post(this.url, {
+        name: name.toUpperCase(),
+        code: code.toUpperCase(),
+        description: description.toUpperCase(),
+      })
+      .pipe(map((res) => Category.fromJson(res)));
+  }
+
+  public update(id: number, name: string, code: string, description: string) {
+    return this.http
+      .put(`${this.url}/${id}`, {
+        name: name.toUpperCase(),
+        code: code.toUpperCase(),
+        description: description.toUpperCase(),
+      })
+      .pipe(map((res) => Category.fromJson(res)));
+  }
+
+  public delete(id: number) {
+    return this.http
+      .delete(`${this.url}/${id}`)
+      .pipe(map((res) => Category.fromJson(res)));
+  }
 }

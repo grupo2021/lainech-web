@@ -26,4 +26,14 @@
   >
     CLIENTES
   </button>
+
+  <button
+    mat-flat-button
+    [routerLink]="['/categories']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+    *ngIf="isAdmin"
+  >
+    CATEGORIAS
+  </button>
 </mat-nav-list>

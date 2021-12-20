@@ -1,0 +1,23 @@
+.categories_container {
+  //   margin: 1.5rem;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+.mat-column-name {
+  flex: 0 0 70%;
+  justify-content: start;
+}
+
+.mat-column-code {
+  flex: 0 0 25%;
+  justify-content: start;
+}
