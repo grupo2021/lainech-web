@@ -1,6 +1,6 @@
 mat-form-field,
 button {
-  width: 80%;
+  width: 100%;
 }
 
 button {
@@ -8,7 +8,79 @@ button {
 }
 
 img {
-  height: 250px;
+  max-width: 100%;
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  mat-form-field,
+  button {
+    width: 80%;
+  }
+
+  button {
+    margin-top: 0.5rem;
+  }
+
+  img {
+    max-width: 80%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  mat-form-field,
+  button {
+    width: 75%;
+  }
+
+  button {
+    margin-top: 0.5rem;
+  }
+
+  img {
+    max-width: 75%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  mat-form-field,
+  button {
+    width: 60%;
+  }
+
+  button {
+    margin-top: 0.5rem;
+  }
+
+  img {
+    max-width: 60%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  mat-form-field,
+  button {
+    width: 50%;
+  }
+
+  button {
+    margin-top: 0.5rem;
+  }
+
+  img {
+    max-width: 400px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 }
