@@ -59,6 +59,7 @@ export class ClientFormComponent implements OnInit {
 
   public onSubmit() {
     if (this.form.invalid) {
+      this.form.markAllAsTouched();
       return;
     }
     this.store.dispatch(initLoading());
