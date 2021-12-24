@@ -44,4 +44,10 @@ export class UserService {
       .post(this.url, { name: name.toUpperCase(), email, roleId, password })
       .pipe(map((res) => User.fromJson(res)));
   }
+
+  public changestatus(id: number) {
+    return this.http
+      .post(`${this.url}/changestatus/${id}`, {})
+      .pipe(map((res) => User.fromJson(res)));
+  }
 }

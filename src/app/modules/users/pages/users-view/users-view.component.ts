@@ -16,6 +16,10 @@ export class UsersViewComponent implements OnInit {
   public user!: User;
   public phones: string[] = [];
 
+  get isActive() {
+    return this.user.status === 'ACTIVE';
+  }
+
   constructor(
     private store: Store<AppState>,
     private userService: UserService,
@@ -31,5 +35,13 @@ export class UsersViewComponent implements OnInit {
         this.phones = JSON.parse(user.profile.phones!) || [];
         this.store.dispatch(stopLoading());
       });
+  }
+
+  changestatus() {
+    this.store.dispatch(initLoading());
+    this.userService.changestatus(this.user.id).subscribe((res) => {
+      this.store.dispatch(stopLoading());
+      this.user = res;
+    });
   }
 }

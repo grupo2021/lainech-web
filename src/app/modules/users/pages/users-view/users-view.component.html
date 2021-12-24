@@ -13,6 +13,13 @@
       <p><strong>C.I: </strong> {{ user.profile.identificationNumber }}</p>
       <p><strong>EMAIL: </strong> {{ user.email }}</p>
       <p><strong>DIRECCION: </strong> {{ user.profile.address }}</p>
+      <p>
+        <strong>Estado: </strong
+        ><mat-chip>
+          {{ user.status }}
+        </mat-chip>
+      </p>
+
       <p><strong>TELEFONOS: </strong></p>
       <mat-chip-list #chipList aria-label="Fruit selection">
         <mat-chip *ngFor="let phone of phones">
@@ -24,6 +31,22 @@
 
   <mat-card-actions>
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="changestatus()"
+        *ngIf="isActive"
+      >
+        Suspender
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="changestatus()"
+        *ngIf="!isActive"
+      >
+        Activar
+      </button>
       <button
         mat-raised-button
         color="primary"
