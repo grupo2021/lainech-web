@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subscription, switchMap } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import { setProduct } from 'src/app/state/actions/product.action';
 import { initLoading, stopLoading } from 'src/app/state/actions/ui.action';
 import { AppState } from 'src/app/state/app.reducer';
 
@@ -24,11 +25,13 @@ export class ProductViewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    console.log('ng on init product view');
     this.store.dispatch(initLoading());
     this.productSubs = this.route.params
       .pipe(switchMap(({ id }) => this.productService.getOne(id)))
       .subscribe((res) => {
         this.product = res;
+        this.store.dispatch(setProduct({ product: res }));
         this.store.dispatch(stopLoading());
       });
   }

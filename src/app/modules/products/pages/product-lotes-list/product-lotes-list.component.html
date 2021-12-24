@@ -1,0 +1,54 @@
+<ng-container *ngIf="product">
+  <h2 style="margin-top: 1rem" *ngIf="!product.lotes.length">
+    No existen lotes para este producto
+  </h2>
+
+  <mat-card style="margin-top: 1rem" *ngIf="product.lotes.length">
+    <mat-card-header>
+      <mat-card-title><h2>LOTES DEL PRODUCTO</h2></mat-card-title>
+    </mat-card-header>
+    <mat-table mat-table [dataSource]="product.lotes">
+      <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef> CODIGO </mat-header-cell>
+        <mat-cell *matCellDef="let lote">
+          {{ lote.code }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cant">
+        <mat-header-cell *matHeaderCellDef> CANTIDAD </mat-header-cell>
+        <mat-cell *matCellDef="let lote">
+          {{ lote.cant | number: "1.0" }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> PRECIO UNITARIO </mat-header-cell>
+        <mat-cell *matCellDef="let lote">
+          {{ lote.price | currency: "Bs." }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="register">
+        <mat-header-cell *matHeaderCellDef> FECHA DE REGISTRO </mat-header-cell>
+        <mat-cell *matCellDef="let lote">
+          {{ lote.register | date }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="expiry">
+        <mat-header-cell *matHeaderCellDef>
+          FECHA DE VENCIMIENTO
+        </mat-header-cell>
+        <mat-cell *matCellDef="let lote">
+          {{ lote.expiry | date }}
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        [routerLink]="['/products', product.id, 'view', row.id]"
+        *matRowDef="let row; columns: displayedColumns"
+      ></mat-row>
+    </mat-table>
+  </mat-card>
+</ng-container>

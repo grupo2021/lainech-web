@@ -17,9 +17,7 @@ export class ProductService {
     name: string,
     code: string,
     description: string,
-    basePrice: number,
-    salePrice: number,
-    stock: number,
+    profit: number,
     categoryId: number,
     image: File
   ) {
@@ -27,9 +25,7 @@ export class ProductService {
     formData.append('name', name.toUpperCase());
     formData.append('code', code.toUpperCase());
     formData.append('description', description.toUpperCase());
-    formData.append('basePrice', basePrice.toString());
-    formData.append('salePrice', salePrice.toString());
-    formData.append('stock', stock.toString());
+    formData.append('profit', profit.toString());
     formData.append('categoryId', categoryId.toString());
     if (image) {
       formData.append('image', image);
@@ -44,9 +40,7 @@ export class ProductService {
     name: string,
     code: string,
     description: string,
-    basePrice: number,
-    salePrice: number,
-    stock: number,
+    profit: number,
     categoryId: number,
     image: File
   ) {
@@ -54,9 +48,7 @@ export class ProductService {
     formData.append('name', name.toUpperCase());
     formData.append('code', code.toUpperCase());
     formData.append('description', description.toUpperCase());
-    formData.append('basePrice', basePrice.toString());
-    formData.append('salePrice', salePrice.toString());
-    formData.append('stock', stock.toString());
+    formData.append('profit', profit.toString());
     formData.append('categoryId', categoryId.toString());
     if (image) {
       formData.append('image', image);

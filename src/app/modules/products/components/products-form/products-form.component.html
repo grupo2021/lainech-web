@@ -32,42 +32,14 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Precio base</mat-label>
+    <mat-label>Procentaje de utilidad</mat-label>
     <input
       matInput
-      placeholder="7624342CB"
+      placeholder="50"
       type="number"
       min="0"
       max="999999"
-      formControlName="basePrice"
-    />
-    <span matPrefix>$&nbsp;</span>
-    <mat-icon matSuffix color="primary">price_check</mat-icon>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Precio de venta</mat-label>
-    <input
-      matInput
-      placeholder="7624342CB"
-      type="number"
-      min="0"
-      max="999999"
-      formControlName="salePrice"
-    />
-    <span matPrefix>$&nbsp;</span>
-    <mat-icon matSuffix color="primary">price_check</mat-icon>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Stock</mat-label>
-    <input
-      matInput
-      placeholder="7624342CB"
-      type="number"
-      min="0"
-      max="999999"
-      formControlName="stock"
+      formControlName="profit"
     />
     <mat-icon matSuffix color="primary">inventory_2</mat-icon>
   </mat-form-field>

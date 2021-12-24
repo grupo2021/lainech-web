@@ -13,6 +13,10 @@ import { ProductsImageComponent } from './components/products-image/products-ima
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProductLoteFormComponent } from './components/product-lote-form/product-lote-form.component';
+import { ProductLotesListComponent } from './pages/product-lotes-list/product-lotes-list.component';
+import { ProductLotesNewComponent } from './pages/product-lotes-new/product-lotes-new.component';
+import { ProductLotesEditComponent } from './pages/product-lotes-edit/product-lotes-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ProductDetailComponent,
     ProductsFormComponent,
     ProductsImageComponent,
+    ProductLoteFormComponent,
+    ProductLotesListComponent,
+    ProductLotesNewComponent,
+    ProductLotesEditComponent,
   ],
   imports: [
     CommonModule,

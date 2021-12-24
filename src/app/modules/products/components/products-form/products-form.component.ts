@@ -50,28 +50,11 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
   }
 
   private create() {
-    const {
-      name,
-      code,
-      description,
-      basePrice,
-      salePrice,
-      stock,
-      categoryId,
-      image,
-    } = this.form.value;
+    const { name, code, description, profit, categoryId, image } =
+      this.form.value;
 
     this.productSubs = this.productService
-      .create(
-        name,
-        code,
-        description,
-        basePrice,
-        salePrice,
-        stock,
-        categoryId,
-        image
-      )
+      .create(name, code, description, profit, categoryId, image)
       .subscribe({
         next: (res) => {
           this.form.reset();
@@ -91,16 +74,8 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
       });
   }
   private update() {
-    const {
-      name,
-      code,
-      description,
-      basePrice,
-      salePrice,
-      stock,
-      categoryId,
-      image,
-    } = this.form.value;
+    const { name, code, description, profit, categoryId, image } =
+      this.form.value;
 
     this.productSubs = this.productService
       .update(
@@ -108,9 +83,7 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
         name,
         code,
         description,
-        basePrice,
-        salePrice,
-        stock,
+        profit,
         categoryId,
         image
       )
@@ -141,15 +114,7 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
         this.product ? this.product.description : '',
         [Validators.required],
       ],
-      basePrice: [
-        this.product ? this.product.basePrice : 0,
-        [Validators.required],
-      ],
-      salePrice: [
-        this.product ? this.product.salePrice : 0,
-        [Validators.required],
-      ],
-      stock: [this.product ? this.product.stock : 100, [Validators.required]],
+      profit: [this.product ? this.product.profit : 50, [Validators.required]],
       image: [this.product ? this.product.image : null, [Validators.required]],
       categoryId: [
         this.product ? this.product.category.id : this.categories[0].id,

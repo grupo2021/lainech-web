@@ -1,0 +1,18 @@
+<mat-card *ngIf="product">
+  <div
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    fxLayoutGap="16px"
+    style="margin-left: 10%; margin-right: 10%; margin-bottom: 1rem"
+  >
+    <h2>Editar lote</h2>
+    <button mat-raised-button [routerLink]="['/products', product.id, 'view']">
+      Volver
+    </button>
+  </div>
+  <mat-card-content>
+    <ng-container *ngIf="lote">
+      <app-product-lote-form [lote]="lote"></app-product-lote-form>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

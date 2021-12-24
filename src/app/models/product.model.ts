@@ -1,4 +1,5 @@
 import { Category } from './category.model';
+import { Lote } from './lote.model';
 
 export class Product {
   public static fromJson(json: any) {
@@ -9,12 +10,17 @@ export class Product {
       name,
       code,
       description,
-      basePrice,
-      salePrice,
-      stock,
+      profit,
       image,
       category,
+      lotes,
     } = json;
+
+    let newLotes: any[] = [];
+    if (lotes) {
+      const lo = lotes as [];
+      newLotes = lo.map((l) => Lote.fromJson(l));
+    }
     return new Product(
       id,
       createdAt,
@@ -22,11 +28,10 @@ export class Product {
       name,
       code,
       description,
-      basePrice,
-      salePrice,
-      stock,
+      profit,
       image,
-      Category.fromJson(category)
+      Category.fromJson(category),
+      newLotes
     );
   }
   constructor(
@@ -36,10 +41,9 @@ export class Product {
     public name: string,
     public code: string,
     public description: string,
-    public basePrice: number,
-    public salePrice: number,
-    public stock: number,
+    public profit: number,
     public image: string,
-    public category: Category
+    public category: Category,
+    public lotes: Lote[]
   ) {}
 }

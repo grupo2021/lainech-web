@@ -29,10 +29,10 @@
       <mat-cell *matCellDef="let product">{{ product.code }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="stock">
-      <mat-header-cell *matHeaderCellDef> STOCK</mat-header-cell>
+    <ng-container matColumnDef="prefit">
+      <mat-header-cell *matHeaderCellDef> % de utilidad</mat-header-cell>
       <mat-cell *matCellDef="let product">
-        {{ product.stock | number: "1.0" }}
+        {{ product.profit | number: "1.2" }} %
       </mat-cell>
     </ng-container>
 

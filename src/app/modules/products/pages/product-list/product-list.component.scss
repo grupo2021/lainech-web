@@ -13,23 +13,17 @@
 }
 
 .mat-column-name {
-  flex: 0 0 32%;
+  flex: 0 0 40%;
   justify-content: start;
 }
 
-.mat-column-email {
-  flex: 0 0 32%;
+.mat-column-code {
+  flex: 0 0 35%;
   justify-content: start;
 }
 
-.mat-column-role {
-  flex: 0 0 15%;
-  justify-content: center;
-  font-weight: bold;
-}
-
-.mat-column-status {
-  flex: 0 0 15%;
+.mat-column-profit {
+  flex: 0 0 20%;
   justify-content: center;
   font-weight: bold;
 }
