@@ -24,7 +24,7 @@
         <button
           mat-raised-button
           color="accent"
-          routerLink="./new"
+          [routerLink]="['/products', product.id, 'view', 'new']"
           style="width: 10rem"
         >
           AGREGAR LOTE
@@ -32,7 +32,7 @@
         <button
           mat-raised-button
           color="primary"
-          [routerLink]="['/products', product.id, 'view', 'new']"
+          [routerLink]="['/products', product.id, 'edit']"
           style="width: 10rem"
         >
           EDITAR
