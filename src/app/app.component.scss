@@ -8,13 +8,14 @@
   right: 0;
 }
 
-.sidenav-container {
-  flex: 1;
-}
-
-.is-mobile {
+.is-mobile .toolbar {
   position: fixed;
   z-index: 2;
+}
+
+.sidenav-container {
+  flex: 1;
+  margin-top: 4rem;
 }
 
 .is-mobile .sidenav-container {
