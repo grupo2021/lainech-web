@@ -15,7 +15,7 @@ const routes: Routes = [
       import('./modules/products/products.module').then(
         (m) => m.ProductsModule
       ),
-    data: { roles: ['ADMIN', 'DEALER'] },
+    data: { roles: ['ADMIN', 'PROMOTOR'] },
     canActivate: [AuthGuard],
   },
 
@@ -31,7 +31,7 @@ const routes: Routes = [
     path: 'clients',
     loadChildren: () =>
       import('./modules/clients/clients.module').then((m) => m.ClientsModule),
-    data: { roles: ['ADMIN', 'clients'] },
+    data: { roles: ['ADMIN', 'PROMOTOR'] },
     canActivate: [AuthGuard],
   },
 
