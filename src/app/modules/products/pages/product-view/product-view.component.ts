@@ -25,7 +25,6 @@ export class ProductViewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log('ng on init product view');
     this.store.dispatch(initLoading());
     this.productSubs = this.route.params
       .pipe(switchMap(({ id }) => this.productService.getOne(id)))

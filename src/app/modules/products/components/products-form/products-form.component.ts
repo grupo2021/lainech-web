@@ -50,11 +50,11 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
   }
 
   private create() {
-    const { name, code, description, profit, categoryId, image } =
+    const { name, code, price, description, profit, categoryId, image } =
       this.form.value;
 
     this.productSubs = this.productService
-      .create(name, code, description, profit, categoryId, image)
+      .create(name, code, price, description, profit, categoryId, image)
       .subscribe({
         next: (res) => {
           this.form.reset();
@@ -74,7 +74,7 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
       });
   }
   private update() {
-    const { name, code, description, profit, categoryId, image } =
+    const { name, code, price, description, profit, categoryId, image } =
       this.form.value;
 
     this.productSubs = this.productService
@@ -82,6 +82,7 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
         this.product.id,
         name,
         code,
+        price,
         description,
         profit,
         categoryId,
@@ -110,6 +111,10 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       name: [this.product ? this.product.name : '', [Validators.required]],
       code: [this.product ? this.product.code : '', [Validators.required]],
+      price: [
+        this.product ? this.product.price : 10,
+        [Validators.required, Validators.min(1), Validators.max(99999)],
+      ],
       description: [
         this.product ? this.product.description : '',
         [Validators.required],

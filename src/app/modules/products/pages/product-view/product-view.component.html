@@ -10,6 +10,7 @@
       </div>
       <mat-card-content>
         <h2>Datos del producto</h2>
+        <p><strong>PRECIO: </strong> {{ product.price | currency: "Bs." }}</p>
         <p><strong>DESCRIPCIÓN: </strong> {{ product.description }}</p>
         <p>
           <strong>PORCENTAJE DE UTILIDAD: </strong>

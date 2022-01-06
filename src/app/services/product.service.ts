@@ -16,6 +16,7 @@ export class ProductService {
   public create(
     name: string,
     code: string,
+    price: number,
     description: string,
     profit: number,
     categoryId: number,
@@ -24,6 +25,7 @@ export class ProductService {
     const formData = new FormData();
     formData.append('name', name.toUpperCase());
     formData.append('code', code.toUpperCase());
+    formData.append('price', price.toString());
     formData.append('description', description.toUpperCase());
     formData.append('profit', profit.toString());
     formData.append('categoryId', categoryId.toString());
@@ -39,6 +41,7 @@ export class ProductService {
     productId: number,
     name: string,
     code: string,
+    price: number,
     description: string,
     profit: number,
     categoryId: number,
@@ -47,6 +50,7 @@ export class ProductService {
     const formData = new FormData();
     formData.append('name', name.toUpperCase());
     formData.append('code', code.toUpperCase());
+    formData.append('price', price.toString());
     formData.append('description', description.toUpperCase());
     formData.append('profit', profit.toString());
     formData.append('categoryId', categoryId.toString());
