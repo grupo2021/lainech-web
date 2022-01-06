@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PaginatedData } from '../models/paginatedData.interface';
 import { Product } from '../models/product.model';
@@ -82,5 +82,14 @@ export class ProductService {
     return this.http
       .get(`${this.url}/${id}`)
       .pipe(map((res) => Product.fromJson(res)));
+  }
+
+  public getAllWithoutPagination() {
+    return this.http.get<[]>(`${this.url}/all/get`).pipe(
+      map((res) => {
+        console.log(res);
+        return res.map((r) => Product.fromJson(r));
+      })
+    );
   }
 }

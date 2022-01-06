@@ -1,0 +1,15 @@
+<h2>Productos a disposicion</h2>
+
+<div *ngFor="let product of products" class="product_container">
+  <div>
+    <h2>{{ product.name }}</h2>
+  </div>
+
+  <div class="image_container">
+    <img [src]="product.image" [alt]="product.name" />
+  </div>
+
+  <div>
+    <button mat-raised-button color="primary">Ver</button>
+  </div>
+</div>

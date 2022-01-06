@@ -45,6 +45,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
+  {
+    path: 'add-stock',
+    loadChildren: () =>
+      import('./modules/add-stock/add-stock.module').then(
+        (m) => m.AddStockModule
+      ),
+    data: { roles: ['PROMOTOR'] },
+    canActivate: [AuthGuard],
+  },
+
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
 ];
 
