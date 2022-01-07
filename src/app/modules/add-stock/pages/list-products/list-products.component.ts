@@ -15,6 +15,9 @@ export class ListProductsComponent implements OnInit, OnDestroy {
   public products: Product[] = [];
   private productsSubs!: Subscription;
 
+  public cant = 0;
+  private productsStockSubs!: Subscription;
+
   constructor(
     private productService: ProductService,
     private store: Store<AppState>
@@ -28,9 +31,14 @@ export class ListProductsComponent implements OnInit, OnDestroy {
         this.products = res;
         this.store.dispatch(stopLoading());
       });
+
+    this.productsStockSubs = this.store
+      .select('productStock')
+      .subscribe(({ cant }) => (this.cant = cant));
   }
 
   ngOnDestroy(): void {
     this.productsSubs?.unsubscribe();
+    this.productsStockSubs?.unsubscribe();
   }
 }

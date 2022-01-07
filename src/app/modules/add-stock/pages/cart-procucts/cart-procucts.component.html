@@ -1,1 +1,25 @@
-<p>cart-procucts works!</p>
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="16px"
+  class="resume_container"
+>
+  <div>
+    <h2>Descripción de la recarga:</h2>
+    <p><strong>Cantidad de productos: </strong> {{ cant }}</p>
+    <p>
+      <strong>Costo total de productos: </strong> {{ total | currency: "Bs. " }}
+    </p>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="sendRequest()">
+    Enviar solicitud
+  </button>
+</div>
+
+<div class="products_container">
+  <app-one-product-stock
+    [product]="product"
+    *ngFor="let product of productsStock"
+  ></app-one-product-stock>
+</div>

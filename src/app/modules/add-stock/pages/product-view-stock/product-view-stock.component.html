@@ -1,0 +1,68 @@
+<div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+  <button
+    mat-raised-button
+    color="primary"
+    routerLink="../cart"
+    [matBadge]="cant"
+    matBadgePosition="after"
+    matBadgeColor="accent"
+  >
+    Productos a pedir
+  </button>
+</div>
+
+<ng-container *ngIf="product">
+  <mat-card style="margin-top: 1rem">
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+      <div>
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.code }}</p>
+      </div>
+
+      <button mat-raised-button color="primary" routerLink="/add-stock">
+        Regresar
+      </button>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="16px">
+      <div class="image_container">
+        <img [src]="product.image" alt="photo" />
+      </div>
+      <mat-card-content>
+        <h2>Datos del producto</h2>
+        <p><strong>PRECIO: </strong> {{ product.price | currency: "Bs." }}</p>
+        <p><strong>DESCRIPCIÓN: </strong> {{ product.description }}</p>
+        <p>
+          <strong>PORCENTAJE DE UTILIDAD: </strong>
+          {{ product.profit | number: "1.2" }} %
+        </p>
+        <p><strong>CATEGORIA: </strong> {{ product.category.name }}</p>
+      </mat-card-content>
+    </div>
+    <mat-card-actions>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+        fxLayoutGap="16px"
+      >
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="cantInput"
+              type="number"
+              min="1"
+              max="99999"
+            />
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="addProduct()">
+            AGREGAR
+          </button>
+        </div>
+
+        <button mat-raised-button color="warn" (click)="removeProduct()">
+          QUITAR
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

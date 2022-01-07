@@ -89,11 +89,8 @@ export class ProductService {
   }
 
   public getAllWithoutPagination() {
-    return this.http.get<[]>(`${this.url}/all/get`).pipe(
-      map((res) => {
-        console.log(res);
-        return res.map((r) => Product.fromJson(r));
-      })
-    );
+    return this.http
+      .get<[]>(`${this.url}/all/get`)
+      .pipe(map((res) => res.map((r) => Product.fromJson(r))));
   }
 }

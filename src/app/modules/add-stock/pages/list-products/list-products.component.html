@@ -1,15 +1,26 @@
-<h2>Productos a disposicion</h2>
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="16px"
+  style="padding: 1rem"
+>
+  <h2>Productos a disposición</h2>
 
-<div *ngFor="let product of products" class="product_container">
-  <div>
-    <h2>{{ product.name }}</h2>
-  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    routerLink="../cart"
+    [matBadge]="cant"
+    matBadgePosition="after"
+    matBadgeColor="accent"
+  >
+    Productos a pedir
+  </button>
+</div>
 
-  <div class="image_container">
-    <img [src]="product.image" [alt]="product.name" />
-  </div>
-
-  <div>
-    <button mat-raised-button color="primary">Ver</button>
-  </div>
+<div class="list_products_container">
+  <app-one-product
+    [product]="product"
+    *ngFor="let product of products"
+  ></app-one-product>
 </div>
