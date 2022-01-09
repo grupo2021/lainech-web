@@ -50,7 +50,20 @@ export class SigninComponent implements OnInit {
   private handledSuccess(user: User, access_token: string) {
     this.store.dispatch(setUser({ user, access_token }));
     this.store.dispatch(stopLoading());
-    this.router.navigate(['/products']).then(() => this.form.reset());
+    switch (user.role) {
+      case 'ADMIN':
+        this.router.navigate(['/products']).then(() => this.form.reset());
+        break;
+      case 'ALMACENERO':
+        this.router.navigate(['/reload']).then(() => this.form.reset());
+        break;
+      case 'PROMOTOR':
+        this.router.navigate(['/add-stock']).then(() => this.form.reset());
+        break;
+      default:
+        this.router.navigate(['/auth']).then(() => this.form.reset());
+        break;
+    }
   }
   private handledError(error: any) {
     this.form.get('password')?.setValue('');

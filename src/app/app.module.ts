@@ -34,6 +34,7 @@ import { AlertComponent } from './layouts/alert/alert.component';
 import { DeleteDialogComponent } from './layouts/delete-dialog/delete-dialog.component';
 
 import { HttpHeadersService } from './interceptors/http-headers.service';
+import { ConfirmDialogComponent } from './layouts/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { HttpHeadersService } from './interceptors/http-headers.service';
     LoadingComponent,
     AlertComponent,
     DeleteDialogComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

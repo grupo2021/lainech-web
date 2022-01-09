@@ -1,7 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { AlertComponent } from 'src/app/layouts/alert/alert.component';
 import { ProductStock } from 'src/app/models/add-stock';
+import { Reload } from 'src/app/models/reload.model';
+import { ReloadService } from 'src/app/services/reload.service';
+import { initLoading, stopLoading } from 'src/app/state/actions/ui.action';
 import { AppState } from 'src/app/state/app.reducer';
 
 @Component({
@@ -16,7 +22,12 @@ export class CartProcuctsComponent implements OnInit, OnDestroy {
 
   private productStockSubs!: Subscription;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(
+    private store: Store<AppState>,
+    private reloadService: ReloadService,
+    private router: Router,
+    private matDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.productStockSubs = this.store
@@ -33,14 +44,42 @@ export class CartProcuctsComponent implements OnInit, OnDestroy {
   }
 
   public sendRequest() {
-    console.log(this.total);
-    console.log(new Date().toISOString());
-    console.log(
+    const details = JSON.stringify(
       this.productsStock.map((p) => ({
         productId: p.id,
         cant: p.cant,
         subtotal: p.subtotal,
       }))
     );
+
+    this.store.dispatch(initLoading());
+    this.reloadService.create(this.total, details).subscribe({
+      next: (res) => this.handledSuccess(res),
+      error: (error) => this.handledError(error),
+    });
+  }
+
+  private handledSuccess(reload: Reload) {
+    this.store.dispatch(stopLoading());
+    this.router.navigate(['/reload']).then(() =>
+      this.matDialog.open(AlertComponent, {
+        data: {
+          title: 'Recarga enviada',
+          content: 'Espera a que el administrador aprueve tu solicitud',
+          icon: 'info',
+        },
+      })
+    );
+  }
+  private handledError(error: any) {
+    console.log(error);
+    this.store.dispatch(stopLoading());
+    this.matDialog.open(AlertComponent, {
+      data: {
+        title: 'No se completo la solicitud',
+        content:
+          'Ocurrio un error al mandar la solicitud de recarga, intente de nuevo.',
+      },
+    });
   }
 }

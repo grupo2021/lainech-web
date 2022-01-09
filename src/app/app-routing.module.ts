@@ -15,7 +15,7 @@ const routes: Routes = [
       import('./modules/products/products.module').then(
         (m) => m.ProductsModule
       ),
-    data: { roles: ['ADMIN', 'PROMOTOR'] },
+    data: { roles: ['ADMIN', 'ALMACENERO'] },
     canActivate: [AuthGuard],
   },
 
@@ -52,6 +52,14 @@ const routes: Routes = [
         (m) => m.AddStockModule
       ),
     data: { roles: ['PROMOTOR'] },
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'reload',
+    loadChildren: () =>
+      import('./modules/reload/reload.module').then((m) => m.ReloadModule),
+    data: { roles: ['ADMIN', 'PROMOTOR', 'ALMACENERO'] },
     canActivate: [AuthGuard],
   },
 

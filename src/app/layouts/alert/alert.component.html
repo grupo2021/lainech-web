@@ -1,5 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px">
-  <mat-icon color="primary" size="50">error</mat-icon>
+  <mat-icon color="primary" size="50">{{
+    data.icon ? data.icon : "error"
+  }}</mat-icon>
   <h1 mat-dialog-title>{{ data.title }}</h1>
   <div mat-dialog-content>{{ data.content }}</div>
   <div mat-dialog-actions>

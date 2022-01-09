@@ -1,6 +1,7 @@
 <mat-nav-list fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="16px">
   <button
     mat-flat-button
+    *ngIf="isAdmin || isAlmacenero"
     [routerLink]="['/products']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
@@ -10,39 +11,50 @@
 
   <button
     mat-flat-button
+    *ngIf="isAdmin"
     [routerLink]="['/users']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
-    *ngIf="isAdmin"
   >
     USUARIOS
   </button>
 
   <button
     mat-flat-button
+    *ngIf="isPromotor"
     [routerLink]="['/clients']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
   >
-    CLIENTES
+    MIS CLIENTES
   </button>
 
   <button
     mat-flat-button
+    *ngIf="isAdmin"
     [routerLink]="['/categories']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
-    *ngIf="isAdmin"
   >
     CATEGORIAS
   </button>
 
   <button
     mat-flat-button
+    *ngIf="isPromotor"
     [routerLink]="['/add-stock']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
   >
-    RECARGA MI STOCK
+    HACER UN RECARGA
+  </button>
+
+  <button
+    mat-flat-button
+    [routerLink]="['/reload']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+  >
+    RECARGAS DE STOCK
   </button>
 </mat-nav-list>

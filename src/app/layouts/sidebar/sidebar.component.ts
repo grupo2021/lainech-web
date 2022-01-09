@@ -18,6 +18,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
     return this.auth?.role === 'ADMIN';
   }
 
+  get isAlmacenero() {
+    return this.auth?.role === 'ALMACENERO';
+  }
+
+  get isPromotor() {
+    return this.auth?.role === 'PROMOTOR';
+  }
+
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {

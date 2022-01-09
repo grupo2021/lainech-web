@@ -1,0 +1,65 @@
+<div>
+  <h2>Lista de recargas</h2>
+  <mat-form-field>
+    <input matInput placeholder="Buscador..." #keyword />
+  </mat-form-field>
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="date"
+    matSortDirection="asc"
+    matSortDisableClear
+  >
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        FECHA
+      </mat-header-cell>
+      <mat-cell *matCellDef="let reload">
+        {{ reload.date | date }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="promotor">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        PROMOTOR
+      </mat-header-cell>
+      <mat-cell *matCellDef="let reload">{{ reload.user.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        TOTAL
+      </mat-header-cell>
+      <mat-cell *matCellDef="let reload">
+        {{ reload.total | currency: "Bs. " }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        ESTADO
+      </mat-header-cell>
+      <mat-cell *matCellDef="let reload">
+        {{ reload.status }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      [routerLink]="['/reload', row.id]"
+      *matRowDef="let row; columns: displayedColumns"
+    ></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [length]="dataSource.size$ | async"
+    [pageSize]="take"
+    [pageSizeOptions]="[5, 10, 15]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
