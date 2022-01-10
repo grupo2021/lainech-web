@@ -63,6 +63,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
+  {
+    path: 'promotor-product',
+    loadChildren: () =>
+      import('./modules/promotor-product/promotor-product.module').then(
+        (m) => m.PromotorProductModule
+      ),
+    data: { roles: ['PROMOTOR'] },
+    canActivate: [AuthGuard],
+  },
+
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
 ];
 

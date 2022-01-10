@@ -1,0 +1,55 @@
+<ng-container *ngIf="promotorProduct">
+  <mat-card style="margin-top: 1rem">
+    <mat-card-header>
+      <mat-card-title>{{ promotorProduct.product.name }}</mat-card-title>
+      <mat-card-subtitle>{{ promotorProduct.product.code }}</mat-card-subtitle>
+    </mat-card-header>
+    <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="16px">
+      <div class="image_container">
+        <img [src]="promotorProduct.product.image" alt="photo" />
+      </div>
+      <mat-card-content>
+        <h2>Datos del promotorProducto</h2>
+
+        <p>
+          <strong>CANTIDAD ACUMULADA: </strong>
+          {{ promotorProduct.cant }}
+        </p>
+
+        <p>
+          <strong>CANTIDAD VENDIDA: </strong>
+          {{ promotorProduct.cant_out }}
+        </p>
+
+        <p>
+          <strong>PRECIO: </strong>
+          {{ promotorProduct.product.price | currency: "Bs." }}
+        </p>
+        <p>
+          <strong>DESCRIPCIÓN: </strong>
+          {{ promotorProduct.product.description }}
+        </p>
+        <!-- <p>
+          <strong>PORCENTAJE DE UTILIDAD: </strong>
+          {{ promotorProduct.product.profit | number: "1.2" }} %
+        </p> -->
+        <p>
+          <strong>CATEGORIA: </strong>
+          {{ promotorProduct.product.category.name }}
+        </p>
+      </mat-card-content>
+    </div>
+
+    <mat-card-actions>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+        <button
+          mat-raised-button
+          color="primary"
+          routerLink="/promotor-product"
+        >
+          Volver
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

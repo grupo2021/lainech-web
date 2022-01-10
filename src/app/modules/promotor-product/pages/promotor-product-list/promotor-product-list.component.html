@@ -1,0 +1,67 @@
+<div>
+  <h2>Mis productos</h2>
+  <mat-form-field>
+    <input matInput placeholder="Buscador..." #keyword />
+  </mat-form-field>
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="updatedAt"
+    matSortDirection="asc"
+    matSortDisableClear
+  >
+    <ng-container matColumnDef="updatedAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        FECHA
+      </mat-header-cell>
+      <mat-cell *matCellDef="let pp">
+        {{ pp.updatedAt | date }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="product">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Producto
+      </mat-header-cell>
+      <mat-cell *matCellDef="let pp">{{
+        pp.product.name | uppercase
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cant">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        ACUMULADO
+      </mat-header-cell>
+      <mat-cell *matCellDef="let pp">
+        {{ pp.cant }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cant_out">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        VENDIDO
+      </mat-header-cell>
+      <mat-cell *matCellDef="let pp">
+        {{ pp.cant_out }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      [routerLink]="['/promotor-product', row.id]"
+      *matRowDef="let row; columns: displayedColumns"
+    ></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [length]="dataSource.size$ | async"
+    [pageSize]="take"
+    [pageSizeOptions]="[5, 10, 15]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

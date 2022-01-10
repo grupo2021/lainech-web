@@ -22,6 +22,16 @@
   <button
     mat-flat-button
     *ngIf="isPromotor"
+    [routerLink]="['/promotor-product']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+  >
+    MIS PRODUCTOS
+  </button>
+
+  <button
+    mat-flat-button
+    *ngIf="isPromotor"
     [routerLink]="['/clients']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
@@ -55,6 +65,6 @@
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
   >
-    HACER UN RECARGA
+    HACER UNA RECARGA
   </button>
 </mat-nav-list>
