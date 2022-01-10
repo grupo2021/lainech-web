@@ -58,7 +58,9 @@ export class SigninComponent implements OnInit {
         this.router.navigate(['/reload']).then(() => this.form.reset());
         break;
       case 'PROMOTOR':
-        this.router.navigate(['/add-stock']).then(() => this.form.reset());
+        this.router
+          .navigate(['/promotor-product'])
+          .then(() => this.form.reset());
         break;
       default:
         this.router.navigate(['/auth']).then(() => this.form.reset());
