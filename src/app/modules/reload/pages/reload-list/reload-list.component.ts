@@ -1,14 +1,18 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { Store } from '@ngrx/store';
 import {
   debounceTime,
   distinctUntilChanged,
   fromEvent,
   merge,
+  Subscription,
   tap,
 } from 'rxjs';
+import { User } from 'src/app/models/user.model';
 import { ReloadService } from 'src/app/services/reload.service';
+import { AppState } from 'src/app/state/app.reducer';
 import { ReloadDataSource } from './reload-datasource';
 
 @Component({
@@ -31,17 +35,38 @@ export class ReloadListComponent implements OnInit {
 
   @ViewChild('keyword') keyword!: ElementRef;
 
-  constructor(private reloadService: ReloadService) {}
+  private auth!: User | null;
+  private authSubs!: Subscription;
+
+  constructor(
+    private reloadService: ReloadService,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
     this.dataSource = new ReloadDataSource(this.reloadService);
-    this.dataSource.loadExpenses(
-      '',
-      this.sortTable,
-      this.page,
-      this.take,
-      this.column
-    );
+
+    this.authSubs = this.store.select('auth').subscribe(({ user }) => {
+      this.auth = user;
+      if (user?.role === 'PROMOTOR') {
+        this.dataSource.loadExpenses(
+          '',
+          this.sortTable,
+          this.page,
+          this.take,
+          this.column,
+          this.auth?.id
+        );
+      } else {
+        this.dataSource.loadExpenses(
+          '',
+          this.sortTable,
+          this.page,
+          this.take,
+          this.column
+        );
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -63,15 +88,28 @@ export class ReloadListComponent implements OnInit {
       .subscribe();
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.authSubs?.unsubscribe();
+  }
 
   private loadExpensesPage() {
-    this.dataSource.loadExpenses(
-      this.keyword.nativeElement.value,
-      this.sort.direction,
-      this.paginator.pageIndex,
-      this.paginator.pageSize,
-      this.sort.active
-    );
+    if (this.auth?.role === 'PROMOTOR') {
+      this.dataSource.loadExpenses(
+        this.keyword.nativeElement.value,
+        this.sort.direction,
+        this.paginator.pageIndex,
+        this.paginator.pageSize,
+        this.sort.active,
+        this.auth.id
+      );
+    } else {
+      this.dataSource.loadExpenses(
+        this.keyword.nativeElement.value,
+        this.sort.direction,
+        this.paginator.pageIndex,
+        this.paginator.pageSize,
+        this.sort.active
+      );
+    }
   }
 }

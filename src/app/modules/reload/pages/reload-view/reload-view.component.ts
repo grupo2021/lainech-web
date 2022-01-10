@@ -83,8 +83,8 @@ export class ReloadViewComponent implements OnInit, OnDestroy {
     });
 
     dialog.afterClosed().subscribe((res) => {
-      this.store.dispatch(initLoading());
       if (res) {
+        this.store.dispatch(initLoading());
         this.reloadService.approve(this.reload.id).subscribe({
           next: (res) => {
             this.store.dispatch(stopLoading());
@@ -114,8 +114,8 @@ export class ReloadViewComponent implements OnInit, OnDestroy {
     });
 
     dialog.afterClosed().subscribe((res) => {
-      this.store.dispatch(initLoading());
       if (res) {
+        this.store.dispatch(initLoading());
         this.reloadService.cancelled(this.reload.id).subscribe({
           next: (res) => {
             this.store.dispatch(stopLoading());

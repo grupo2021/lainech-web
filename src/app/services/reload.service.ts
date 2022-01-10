@@ -36,6 +36,30 @@ export class ReloadService {
       );
   }
 
+  public getAllByUser(
+    keyword: string = '',
+    sort: string = 'ASC',
+    page: number = 0,
+    take: number = 10,
+    column: string = 'date'
+  ) {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('take', take.toString())
+      .set('sort', sort.toUpperCase())
+      .set('keyword', keyword.toUpperCase())
+      .set('column', column);
+
+    return this.http
+      .get<{ data: []; count: number }>(`${this.url}/byuser`, { params })
+      .pipe(
+        map(({ data, count }) => ({
+          data: data.map((r) => Reload.fromJson(r)),
+          count,
+        }))
+      );
+  }
+
   public getOne(id: number) {
     return this.http
       .get(`${this.url}/${id}`)

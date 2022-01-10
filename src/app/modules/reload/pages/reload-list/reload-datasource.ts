@@ -21,19 +21,33 @@ export class ReloadDataSource implements DataSource<Reload> {
     sort: string,
     page: number,
     take: number,
-    column: string
+    column: string,
+    userId?: number
   ) {
     this.loadingSubject.next(true);
-    this.reloadService
-      .getAll(keyword, sort, page, take, column)
-      .pipe(
-        catchError(() => of({ count: 0, data: [] })),
-        finalize(() => this.loadingSubject.next(false))
-      )
-      .subscribe(({ count, data }) => {
-        this.sizeSubject.next(count);
-        this.reloadsSubject.next(data);
-      });
+    if (userId) {
+      this.reloadService
+        .getAllByUser(keyword, sort, page, take, column)
+        .pipe(
+          catchError(() => of({ count: 0, data: [] })),
+          finalize(() => this.loadingSubject.next(false))
+        )
+        .subscribe(({ count, data }) => {
+          this.sizeSubject.next(count);
+          this.reloadsSubject.next(data);
+        });
+    } else {
+      this.reloadService
+        .getAll(keyword, sort, page, take, column)
+        .pipe(
+          catchError(() => of({ count: 0, data: [] })),
+          finalize(() => this.loadingSubject.next(false))
+        )
+        .subscribe(({ count, data }) => {
+          this.sizeSubject.next(count);
+          this.reloadsSubject.next(data);
+        });
+    }
   }
 
   connect(collectionViewer: CollectionViewer): Observable<Reload[]> {

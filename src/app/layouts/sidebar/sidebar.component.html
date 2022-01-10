@@ -41,20 +41,20 @@
 
   <button
     mat-flat-button
+    [routerLink]="['/reload']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+  >
+    {{ isPromotor ? "MIS RECARGAS" : "RECARGAS DE STOCK" }}
+  </button>
+
+  <button
+    mat-flat-button
     *ngIf="isPromotor"
     [routerLink]="['/add-stock']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
   >
     HACER UN RECARGA
-  </button>
-
-  <button
-    mat-flat-button
-    [routerLink]="['/reload']"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: false }"
-  >
-    RECARGAS DE STOCK
   </button>
 </mat-nav-list>
