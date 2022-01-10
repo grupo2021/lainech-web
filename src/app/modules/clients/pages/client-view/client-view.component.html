@@ -1,6 +1,9 @@
 <mat-card *ngIf="client" style="margin-top: 1rem">
   <mat-card-header>
     <mat-card-title>{{ client.name | uppercase }}</mat-card-title>
+    <mat-card-subtitle>
+      Promotor encargado: {{ client.user.name }}
+    </mat-card-subtitle>
   </mat-card-header>
   <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="16px">
     <div class="image_container">
@@ -23,10 +26,11 @@
     </mat-card-content>
   </div>
 
-  <mat-card-actions>
+  <mat-card-actions *ngIf="auth">
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
       <button
         mat-raised-button
+        *ngIf="isPromotor"
         color="primary"
         routerLink="../edit"
         style="width: 10rem"

@@ -31,7 +31,7 @@
 
   <button
     mat-flat-button
-    *ngIf="isPromotor"
+    *ngIf="isPromotor || isAdmin"
     [routerLink]="['/clients']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription, switchMap } from 'rxjs';
 import { Client } from 'src/app/models/client.model';
+import { User } from 'src/app/models/user.model';
 import { ClientService } from 'src/app/services/client.service';
 import { initLoading, stopLoading } from 'src/app/state/actions/ui.action';
 import { AppState } from 'src/app/state/app.reducer';
@@ -17,6 +18,13 @@ export class ClientViewComponent implements OnInit {
   private clientSubs!: Subscription;
 
   public phones: string[] = [];
+
+  public auth!: User | null;
+  private authSubs!: Subscription;
+
+  get isPromotor() {
+    return this.auth?.role === 'PROMOTOR';
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -33,9 +41,14 @@ export class ClientViewComponent implements OnInit {
         this.phones = JSON.parse(res.phones);
         this.store.dispatch(stopLoading());
       });
+
+    this.authSubs = this.store.select('auth').subscribe(({ user }) => {
+      this.auth = user;
+    });
   }
 
   ngOnDestroy(): void {
     this.clientSubs?.unsubscribe();
+    this.authSubs?.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-<div style="padding: 1.5rem">
+<div style="padding: 1.5rem" *ngIf="auth">
   <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
     <button
       mat-raised-button
@@ -10,6 +10,7 @@
 
     <button
       mat-raised-button
+      *ngIf="isPromotor"
       [routerLink]="['./new']"
       routerLinkActive="active"
     >

@@ -1,7 +1,19 @@
+import { UserSmall } from './user-small.model';
+
 export class Client {
   public static fromJson(json: any) {
-    const { id, createdAt, updatedAt, name, surname, address, phones } = json;
-    return new Client(id, createdAt, updatedAt, name, surname, address, phones);
+    const { id, createdAt, updatedAt, name, surname, address, phones, user } =
+      json;
+    return new Client(
+      id,
+      createdAt,
+      updatedAt,
+      name,
+      surname,
+      address,
+      phones,
+      UserSmall.fromJson(user)
+    );
   }
   constructor(
     public id: number,
@@ -10,6 +22,7 @@ export class Client {
     public name: string,
     public surname: string,
     public address: string,
-    public phones: string
+    public phones: string,
+    public user: UserSmall
   ) {}
 }
