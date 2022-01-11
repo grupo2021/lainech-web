@@ -1,0 +1,29 @@
+<div>
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+    <h2>Productos a la venta</h2>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="../cart"
+      [matBadge]="total"
+      matBadgePosition="after"
+      matBadgeColor="accent"
+    >
+      Productos a vender
+    </button>
+  </div>
+
+  <div class="list_products_container">
+    <app-sell-product
+      [product]="product"
+      *ngFor="let product of products"
+    ></app-sell-product>
+  </div>
+
+  <div *ngIf="!products.length">
+    <h2>No tienes productos para vender...</h2>
+    <button mat-raised-button color="primary" routerLink="/add-stock">
+      Recarga aqui
+    </button>
+  </div>
+</div>

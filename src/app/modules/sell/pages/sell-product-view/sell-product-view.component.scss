@@ -1,0 +1,21 @@
+mat-card {
+  width: 80%;
+  .image_container {
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eceaea;
+    border-radius: 2rem;
+    img {
+      max-width: 200px;
+      border-radius: 50%;
+    }
+  }
+}
+
+mat-form-field {
+  width: 4rem;
+  text-align: center;
+}

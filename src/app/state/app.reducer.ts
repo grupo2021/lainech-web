@@ -4,6 +4,7 @@ import {
   productStockReducer,
 } from './reducers/add-stock.reducer';
 import { authReducer, AuthState } from './reducers/auth.reducer';
+import { sellReducer, SellState } from './reducers/sell.reducer';
 import { productReducer, ProductState } from './reducers/product.reducer';
 import { uiReducer, UiState } from './reducers/ui.reducer';
 
@@ -12,6 +13,7 @@ export interface AppState {
   ui: UiState;
   product: ProductState;
   productStock: ProductsStockState;
+  sell: SellState;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
@@ -19,4 +21,5 @@ export const appReducers: ActionReducerMap<AppState> = {
   ui: uiReducer,
   product: productReducer,
   productStock: productStockReducer,
+  sell: sellReducer,
 };

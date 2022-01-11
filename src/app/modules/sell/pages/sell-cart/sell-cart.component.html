@@ -1,0 +1,29 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="16px"
+  class="resume_container"
+>
+  <div>
+    <h2>Resumen de la venta:</h2>
+    <p><strong>Cantidad de productos: </strong> {{ cant }}</p>
+    <p>
+      <strong>Costo total de productos: </strong> {{ total | currency: "Bs. " }}
+    </p>
+  </div>
+
+  <button mat-raised-button color="primary" routerLink="../confirm">
+    Continuar
+  </button>
+</div>
+
+<div class="products_container">
+  <app-sell-cart-product
+    [product]="product"
+    *ngFor="let product of products"
+  ></app-sell-cart-product>
+
+  <div *ngIf="!products.length">
+    <h2>Tu canasta de venta esta vacia...</h2>
+  </div>
+</div>

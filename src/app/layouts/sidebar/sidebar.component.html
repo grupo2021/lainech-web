@@ -67,4 +67,14 @@
   >
     HACER UNA RECARGA
   </button>
+
+  <button
+    mat-flat-button
+    *ngIf="isPromotor"
+    [routerLink]="['/sell']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+  >
+    HACER UNA VENTA
+  </button>
 </mat-nav-list>

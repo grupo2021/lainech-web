@@ -1,0 +1,50 @@
+<div class="header_container">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+    <button mat-stroked-button color="primary" routerLink="../cart">
+      Regresar
+    </button>
+    <button mat-raised-button color="primary" (click)="confirm()">
+      Confirmar Venta
+    </button>
+  </div>
+
+  <div class="description_container">
+    <p><strong>Cantidad de productos totales: </strong> {{ cant }}</p>
+    <p>
+      <strong>Precio de productos total: </strong> {{ total | currency: "Bs." }}
+    </p>
+  </div>
+
+  <div class="sell_form_container">
+    <mat-form-field appearance="outline">
+      <mat-label>Cliente destinatario</mat-label>
+      <mat-select [formControl]="clientSelect">
+        <mat-option [value]="client.id" *ngFor="let client of clients">{{
+          client.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="preSells.length">
+    <h2>Resumen de venta</h2>
+    <div class="product_stock_container" *ngFor="let product of preSells">
+      <div class="product_stock_image">
+        <img [src]="product.image" [alt]="product.name" />
+      </div>
+      <div class="product_stock_description">
+        <p>
+          <strong>{{ product.name | uppercase }}</strong>
+        </p>
+        <p>
+          <strong>Precio unitario: </strong>
+          {{ product.price | currency: "Bs. " }}
+        </p>
+        <p><strong>Cantidad: </strong> {{ product.cant }}</p>
+        <p>
+          <strong>Subtotal: </strong> {{ product.subtotal | currency: "Bs. " }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

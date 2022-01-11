@@ -70,4 +70,10 @@ export class ClientService {
       .get(`${this.url}/${id}`)
       .pipe(map((res) => Client.fromJson(res)));
   }
+
+  public findAllWithoutPagination() {
+    return this.http
+      .get<[]>(`${this.url}/all`)
+      .pipe(map((res) => res.map((r) => Client.fromJson(r))));
+  }
 }

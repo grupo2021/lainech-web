@@ -35,6 +35,12 @@ export class PromotorProductService {
     );
   }
 
+  public getAllWithoutPagination() {
+    return this.http
+      .get<[]>(`${this.url}/sell`)
+      .pipe(map((res) => res.map((r) => PromotorProduct.fromJson(r))));
+  }
+
   public getOne(id: number) {
     return this.http
       .get(`${this.url}/${id}`)

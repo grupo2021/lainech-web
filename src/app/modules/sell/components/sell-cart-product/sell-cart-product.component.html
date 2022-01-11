@@ -1,0 +1,22 @@
+<div class="product_stock_container">
+  <div class="product_stock_image" [routerLink]="['../', product.id]">
+    <img [src]="product.image" [alt]="product.name" />
+  </div>
+  <div class="product_stock_description">
+    <p>
+      <strong>{{ product.name | uppercase }}</strong>
+    </p>
+    <p><strong>Cantidad: </strong> {{ product.cant }}</p>
+    <p><strong>Subtotal: </strong> {{ product.subtotal | currency: "Bs. " }}</p>
+  </div>
+
+  <div class="product_stock_actions">
+    <button mat-mini-fab color="primary" (click)="increment()">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <button mat-mini-fab color="warn" (click)="decrement()">
+      <mat-icon>remove</mat-icon>
+    </button>
+  </div>
+</div>
