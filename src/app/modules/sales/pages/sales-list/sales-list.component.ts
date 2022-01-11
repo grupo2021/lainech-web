@@ -18,7 +18,7 @@ import { SalesDataSource } from './sales-datasource';
 })
 export class SalesListComponent implements OnInit {
   dataSource!: SalesDataSource;
-  displayedColumns = ['date', 'name', 'surname', 'total', 'status'];
+  displayedColumns = ['date', 'promotor', 'total', 'status'];
 
   page = 0;
   take = 5;

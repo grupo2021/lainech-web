@@ -24,18 +24,11 @@
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="promotor">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        NOMBRE
+        PROMOTOR
       </mat-header-cell>
-      <mat-cell *matCellDef="let sale">{{ sale.client.name }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="surname">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        APELLIDO
-      </mat-header-cell>
-      <mat-cell *matCellDef="let sale">{{ sale.client.surname }}</mat-cell>
+      <mat-cell *matCellDef="let sale">{{ sale.user.name }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="total">
