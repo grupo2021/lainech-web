@@ -15,19 +15,9 @@ export interface SellState {
 }
 
 export const initialSellState: SellState = {
-  preSells: [
-    {
-      id: 1,
-      name: 'EUCALIPTUS',
-      image:
-        'https://res.cloudinary.com/dighalnuf/image/upload/v1639857583/in0hvdseamhmvlhqfcjs.png',
-      price: 1,
-      subtotal: 6,
-      cant: 6,
-    },
-  ],
-  total: 6,
-  cant: 6,
+  preSells: [],
+  total: 0,
+  cant: 0,
 };
 
 const _sellReducer = createReducer(

@@ -15,19 +15,9 @@ export interface ProductsStockState {
 }
 
 export const initialProductsStockState: ProductsStockState = {
-  products: [
-    {
-      id: 1,
-      name: 'producto 01',
-      price: 1,
-      image:
-        'https://res.cloudinary.com/dighalnuf/image/upload/v1639710128/z1lekusrodo2haovsqbv.png',
-      cant: 3,
-      subtotal: 3,
-    },
-  ],
-  total: 3,
-  cant: 3,
+  products: [],
+  total: 0,
+  cant: 0,
 };
 
 const _productStockReducer = createReducer(

@@ -22,4 +22,8 @@
     [product]="product"
     *ngFor="let product of productsStock"
   ></app-one-product-stock>
+
+  <div *ngIf="!productsStock.length">
+    <h2>No tienes ningun producto en tu canasta de recarga!</h2>
+  </div>
 </div>

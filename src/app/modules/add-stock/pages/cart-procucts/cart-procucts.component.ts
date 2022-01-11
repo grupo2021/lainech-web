@@ -7,6 +7,7 @@ import { AlertComponent } from 'src/app/layouts/alert/alert.component';
 import { ProductStock } from 'src/app/models/add-stock';
 import { Reload } from 'src/app/models/reload.model';
 import { ReloadService } from 'src/app/services/reload.service';
+import { cleanstock } from 'src/app/state/actions/add-stock.action';
 import { initLoading, stopLoading } from 'src/app/state/actions/ui.action';
 import { AppState } from 'src/app/state/app.reducer';
 
@@ -61,6 +62,7 @@ export class CartProcuctsComponent implements OnInit, OnDestroy {
 
   private handledSuccess(reload: Reload) {
     this.store.dispatch(stopLoading());
+    this.store.dispatch(cleanstock());
     this.router.navigate(['/reload']).then(() =>
       this.matDialog.open(AlertComponent, {
         data: {
