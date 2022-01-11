@@ -1,10 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { AlertComponent } from 'src/app/layouts/alert/alert.component';
+import { ConfirmDialogComponent } from 'src/app/layouts/confirm-dialog/confirm-dialog.component';
 import { Client } from 'src/app/models/client.model';
 import { PreSell } from 'src/app/models/pre-sell.model';
 import { ClientService } from 'src/app/services/client.service';
+import { SaleService } from 'src/app/services/sale.service';
+import { cleanPreSell } from 'src/app/state/actions/sell.action';
 import { initLoading, stopLoading } from 'src/app/state/actions/ui.action';
 import { AppState } from 'src/app/state/app.reducer';
 
@@ -26,7 +32,10 @@ export class SellConfirmComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<AppState>,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private saleService: SaleService,
+    private router: Router,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -58,16 +67,38 @@ export class SellConfirmComponent implements OnInit, OnDestroy {
     }
     const details = this.preSells.map((p) => ({
       promotorProductId: p.id,
-      precioUnitario: p.price,
+      unitPrice: p.price,
       cant: p.cant,
       subtotal: p.subtotal,
     }));
 
-    console.log({
-      date: new Date().toISOString(),
-      total: this.total,
-      clientId: this.clientSelect.value,
-      details,
+    const dialog = this.matDialog.open(ConfirmDialogComponent, {
+      data: { content: 'Usted esta generando una venta, esta seguro?' },
+    });
+
+    dialog.afterClosed().subscribe((res) => {
+      if (res) {
+        this.store.dispatch(initLoading());
+        this.saleService
+          .create(this.total, this.clientSelect.value, JSON.stringify(details))
+          .subscribe({
+            next: (res) => this.handledSuccess(res),
+            error: (e) => this.handledError(e),
+          });
+      }
+    });
+  }
+
+  private handledSuccess(res: any) {
+    this.store.dispatch(stopLoading());
+    this.store.dispatch(cleanPreSell());
+    this.router.navigate(['/sales']);
+  }
+
+  private handledError(e: any) {
+    this.store.dispatch(stopLoading());
+    this.matDialog.open(AlertComponent, {
+      data: { title: 'Error', content: 'Intente de nuevo' },
     });
   }
 }

@@ -81,6 +81,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
+  {
+    path: 'sales',
+    loadChildren: () =>
+      import('./modules/sales/sales.module').then((m) => m.SalesModule),
+    data: { roles: ['PROMOTOR', 'ADMIN', 'ALMACENERO'] },
+    canActivate: [AuthGuard],
+  },
+
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
 ];
 

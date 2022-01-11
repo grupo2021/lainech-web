@@ -48,6 +48,15 @@
   >
     CATEGORIAS
   </button>
+  <button
+    mat-flat-button
+    *ngIf="isPromotor || isAdmin"
+    [routerLink]="['/sales']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+  >
+    {{ isPromotor ? "MIS VENTAS" : "VENTAS REALIZADAS" }}
+  </button>
 
   <button
     mat-flat-button
@@ -55,7 +64,7 @@
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
   >
-    {{ isPromotor ? "MIS RECARGAS" : "RECARGAS DE STOCK" }}
+    {{ isPromotor ? "MIS RECARGAS" : "RECARGAS DE REALIZADAS" }}
   </button>
 
   <button
