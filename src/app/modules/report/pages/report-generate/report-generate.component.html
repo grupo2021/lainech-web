@@ -1,0 +1,90 @@
+<div class="report_container" *ngIf="users.length">
+  <h2>Generador de reportes</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div class="item">
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de reporte</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="VENTAS">VENTAS</mat-option>
+          <mat-option value="RECARGAS">RECARGAS</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Promotores</mat-label>
+        <mat-select formControlName="promotor">
+          <mat-option [value]="user.id" *ngFor="let user of users">{{
+            user.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="item">
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha inicio</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="initDate" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha fin</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="endDate" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary">GENERAR</button>
+  </form>
+</div>
+
+<div *ngIf="dataReport" style="margin-top: 1rem">
+  <div *ngIf="!dataReport.reports.length">
+    <h2>No hay reportes que cumplan esta configuración.</h2>
+  </div>
+
+  <mat-table
+    [dataSource]="dataReport.reports"
+    *ngIf="dataReport.reports.length"
+  >
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> FECHA </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.date | date }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+      <mat-header-cell *matHeaderCellDef> DETALLE </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div *ngFor="let detail of row.details" class="detail">
+          <p><strong>Product: </strong> {{ detail.product.name }}</p>
+          <p>
+            <strong>P/U: </strong> {{ detail.precio_unitario }} -
+            <strong>Cantidad: </strong> {{ detail.cant }}
+          </p>
+          <p><strong>Subtotal: </strong> {{ detail.subtotal }}</p>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <mat-header-cell *matHeaderCellDef> TOTAL </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{
+        row.total | currency: "Bs."
+      }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      [routerLink]="['/sales', row.id]"
+      *matRowDef="let row; columns: displayedColumns"
+    ></mat-row>
+  </mat-table>
+</div>

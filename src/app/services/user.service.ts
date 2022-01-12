@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PaginatedData } from '../models/paginatedData.interface';
+import { UserSmall } from '../models/user-small.model';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -49,5 +50,11 @@ export class UserService {
     return this.http
       .post(`${this.url}/changestatus/${id}`, {})
       .pipe(map((res) => User.fromJson(res)));
+  }
+
+  public getPromotors() {
+    return this.http
+      .get<[]>(`${this.url}/all/promotors`)
+      .pipe(map((res) => res.map((r) => UserSmall.fromJson(r))));
   }
 }

@@ -89,6 +89,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
+  {
+    path: 'report',
+    loadChildren: () =>
+      import('./modules/report/report.module').then((m) => m.ReportModule),
+    data: { roles: ['ADMIN', 'ALMACENERO'] },
+    canActivate: [AuthGuard],
+  },
+
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
 ];
 

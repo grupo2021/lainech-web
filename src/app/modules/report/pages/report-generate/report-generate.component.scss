@@ -1,0 +1,52 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  mat-form-field,
+  button {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+    mat-form-field,
+    button {
+      width: 80%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .form {
+    display: flex;
+    flex-direction: row;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      margin-right: 1rem;
+    }
+    mat-form-field {
+      width: 15rem;
+    }
+    button {
+      width: 8rem;
+      height: 3rem;
+    }
+  }
+}
+
+.mat-column-details {
+  flex-direction: column;
+  align-items: flex-start;
+  p {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .detail {
+    margin-bottom: 0.5rem;
+  }
+}
