@@ -90,6 +90,10 @@ export class ClientFormComponent implements OnInit {
       name: [this.client ? this.client.name : '', Validators.required],
       surname: [this.client ? this.client.surname : '', Validators.required],
       address: [this.client ? this.client.address : '', Validators.required],
+      identification_number: [
+        this.client ? this.client.identification_number : '',
+        [Validators.required],
+      ],
       phones: this.fb.array(
         this.client
           ? this.createFormControls(JSON.parse(this.client.phones))
@@ -104,29 +108,10 @@ export class ClientFormComponent implements OnInit {
   }
 
   private create() {
-    const { name, surname, address, phones } = this.form.value;
-    this.clientService.create(name, surname, address, phones).subscribe({
-      next: (client) => {
-        this.router.navigate(['clients', client.id, 'view']);
-        this.store.dispatch(stopLoading());
-      },
-      error: (error) => {
-        this.store.dispatch(stopLoading());
-        console.warn(error);
-        this.matDialog.open(AlertComponent, {
-          data: {
-            title: 'Error al guardar los datos',
-            content:
-              'Intente de nuevo, si el problema persiste comuniquese con el administrador',
-          },
-        });
-      },
-    });
-  }
-  private update() {
-    const { name, surname, address, phones } = this.form.value;
+    const { name, surname, address, phones, identification_number } =
+      this.form.value;
     this.clientService
-      .update(this.client.id, name, surname, address, phones)
+      .create(name, surname, address, identification_number, phones)
       .subscribe({
         next: (client) => {
           this.router.navigate(['clients', client.id, 'view']);
@@ -144,5 +129,49 @@ export class ClientFormComponent implements OnInit {
           });
         },
       });
+  }
+  private update() {
+    const { name, surname, address, phones, identification_number } =
+      this.form.value;
+    this.clientService
+      .update(
+        this.client.id,
+        name,
+        surname,
+        address,
+        identification_number,
+        phones
+      )
+      .subscribe({
+        next: (client) => {
+          this.router.navigate(['clients', client.id, 'view']);
+          this.store.dispatch(stopLoading());
+        },
+        error: (error) => {
+          this.store.dispatch(stopLoading());
+          console.warn(error);
+          this.matDialog.open(AlertComponent, {
+            data: {
+              title: 'Error al guardar los datos',
+              content:
+                'Intente de nuevo, si el problema persiste comuniquese con el administrador',
+            },
+          });
+        },
+      });
+  }
+
+  invalidField(field: string) {
+    return this.form.get(field)?.invalid && this.form.get(field)?.touched;
+  }
+
+  get imageError(): string {
+    const errors = this.form.get('image')!.errors;
+    if (errors!['required']) {
+      return 'La imagen es obligatoria';
+    } else if (errors!['minlength']) {
+      return 'Nombre debe tener minimo 2 carateres';
+    }
+    return '';
   }
 }

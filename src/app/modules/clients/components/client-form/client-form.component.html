@@ -18,6 +18,17 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
+    <mat-label>C.I. o NIT</mat-label>
+    <input
+      matInput
+      placeholder="3453444CB"
+      type="text"
+      formControlName="identification_number"
+    />
+    <mat-icon matSuffix color="primary">face</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
     <mat-label>Dirección</mat-label>
     <input matInput placeholder="JUAN" type="text" formControlName="address" />
     <mat-icon matSuffix color="primary">home</mat-icon>

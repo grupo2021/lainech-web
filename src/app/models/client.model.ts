@@ -2,8 +2,19 @@ import { UserSmall } from './user-small.model';
 
 export class Client {
   public static fromJson(json: any) {
-    const { id, createdAt, updatedAt, name, surname, address, phones, user } =
-      json;
+    const {
+      id,
+      createdAt,
+      updatedAt,
+      name,
+      surname,
+      address,
+      phones,
+      identification_number,
+      image,
+      coords,
+      user,
+    } = json;
     return new Client(
       id,
       createdAt,
@@ -12,6 +23,9 @@ export class Client {
       surname,
       address,
       phones,
+      identification_number,
+      image,
+      coords,
       UserSmall.fromJson(user)
     );
   }
@@ -23,6 +37,9 @@ export class Client {
     public surname: string,
     public address: string,
     public phones: string,
+    public identification_number: string,
+    public image: string,
+    public coords: string,
     public user: UserSmall
   ) {}
 }

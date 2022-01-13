@@ -14,6 +14,10 @@
       <p><strong>Nombre: </strong> {{ client.name | uppercase }}</p>
       <p><strong>APELLIDOS: </strong> {{ client.surname | uppercase }}</p>
       <p>
+        <strong>CI o NIT: </strong>
+        {{ client.identification_number | uppercase }}
+      </p>
+      <p>
         <strong>DIRECCIÓN:</strong>
         {{ client.address | uppercase }}
       </p>

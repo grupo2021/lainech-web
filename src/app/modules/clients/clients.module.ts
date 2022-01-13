@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ClientFormComponent } from './components/client-form/client-form.component';
+import { ClientImageComponent } from './components/client-image/client-image.component';
+import { ClientMapComponent } from './components/client-map/client-map.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ClientFormComponent } from './components/client-form/client-form.compon
     ClientViewComponent,
     ClientEditComponent,
     ClientFormComponent,
+    ClientImageComponent,
+    ClientMapComponent,
   ],
   imports: [
     CommonModule,

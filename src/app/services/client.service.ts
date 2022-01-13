@@ -36,6 +36,7 @@ export class ClientService {
     name: string,
     surname: string,
     address: string,
+    identification_number: string,
     phones: string[]
   ) {
     return this.http
@@ -43,6 +44,7 @@ export class ClientService {
         name,
         surname,
         address,
+        identification_number: identification_number.toUpperCase(),
         phones: JSON.stringify(phones),
       })
       .pipe(map((res) => Client.fromJson(res)));
@@ -53,6 +55,7 @@ export class ClientService {
     name: string,
     surname: string,
     address: string,
+    identification_number: string,
     phones: string[]
   ) {
     return this.http
@@ -60,6 +63,7 @@ export class ClientService {
         name,
         surname,
         address,
+        identification_number: identification_number.toUpperCase(),
         phones: JSON.stringify(phones),
       })
       .pipe(map((res) => Client.fromJson(res)));

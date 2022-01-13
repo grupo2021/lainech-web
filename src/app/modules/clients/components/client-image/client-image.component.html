@@ -1,0 +1,18 @@
+<input type="file" hidden (change)="onPhotoSelected($event)" #photoInput />
+<div class="image_container">
+  <img
+    *ngIf="!initialValue"
+    [src]="photoSelected || 'assets/store.svg'"
+    alt="no image"
+    class="user-image"
+    (click)="photoInput.click()"
+  />
+
+  <img
+    *ngIf="initialValue"
+    [src]="initialValue"
+    alt="no image"
+    class="user-image"
+    (click)="photoInput.click()"
+  />
+</div>

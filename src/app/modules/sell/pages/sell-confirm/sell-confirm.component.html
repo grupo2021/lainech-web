@@ -19,9 +19,13 @@
     <mat-form-field appearance="outline">
       <mat-label>Cliente destinatario</mat-label>
       <mat-select [formControl]="clientSelect">
-        <mat-option [value]="client.id" *ngFor="let client of clients">{{
-          client.name
-        }}</mat-option>
+        <mat-option [value]="client.id" *ngFor="let client of clients">
+          <p>
+            {{ client.name }} {{ client.surname }} con
+            <strong>CI o NIT: </strong>
+            {{ client.identification_number }}
+          </p>
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </div>

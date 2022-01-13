@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AlertComponent } from 'src/app/layouts/alert/alert.component';
+import { ConfirmDialogComponent } from 'src/app/layouts/confirm-dialog/confirm-dialog.component';
 import { ProductStock } from 'src/app/models/add-stock';
 import { Reload } from 'src/app/models/reload.model';
 import { ReloadService } from 'src/app/services/reload.service';
@@ -45,18 +46,36 @@ export class CartProcuctsComponent implements OnInit, OnDestroy {
   }
 
   public sendRequest() {
-    const details = JSON.stringify(
-      this.productsStock.map((p) => ({
-        productId: p.id,
-        cant: p.cant,
-        subtotal: p.subtotal,
-      }))
-    );
+    if (!this.productsStock.length) {
+      this.matDialog.open(AlertComponent, {
+        data: {
+          title: 'Oops',
+          content:
+            'Tienes que tener al menos 1 producto en tu lista de recargas...',
+        },
+      });
+      return;
+    }
+    const confirm = this.matDialog.open(ConfirmDialogComponent, {
+      data: { content: '¿Está seguro de hacer esta recarga?' },
+    });
 
-    this.store.dispatch(initLoading());
-    this.reloadService.create(this.total, details).subscribe({
-      next: (res) => this.handledSuccess(res),
-      error: (error) => this.handledError(error),
+    confirm.afterClosed().subscribe((res) => {
+      if (res) {
+        const details = JSON.stringify(
+          this.productsStock.map((p) => ({
+            productId: p.id,
+            cant: p.cant,
+            subtotal: p.subtotal,
+          }))
+        );
+
+        this.store.dispatch(initLoading());
+        this.reloadService.create(this.total, details).subscribe({
+          next: (res) => this.handledSuccess(res),
+          error: (error) => this.handledError(error),
+        });
+      }
     });
   }
 
