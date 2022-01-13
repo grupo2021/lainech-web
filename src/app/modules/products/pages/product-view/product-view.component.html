@@ -12,10 +12,10 @@
         <h2>Datos del producto</h2>
         <p><strong>PRECIO: </strong> {{ product.price | currency: "Bs." }}</p>
         <p><strong>DESCRIPCIÓN: </strong> {{ product.description }}</p>
-        <p>
+        <!-- <p>
           <strong>PORCENTAJE DE UTILIDAD: </strong>
           {{ product.profit | number: "1.2" }} %
-        </p>
+        </p> -->
         <p><strong>CATEGORIA: </strong> {{ product.category.name }}</p>
       </mat-card-content>
     </div>
