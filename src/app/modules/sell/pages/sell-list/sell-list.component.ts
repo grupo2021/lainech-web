@@ -16,6 +16,7 @@ export class SellListComponent implements OnInit, OnDestroy {
   private productsSubs!: Subscription;
 
   public total = 0;
+  public cant = 0;
   private sellSubs!: Subscription;
 
   constructor(
@@ -32,8 +33,9 @@ export class SellListComponent implements OnInit, OnDestroy {
         this.store.dispatch(stopLoading());
       });
 
-    this.store.select('sell').subscribe(({ total }) => {
+    this.store.select('sell').subscribe(({ total, cant }) => {
       this.total = total;
+      this.cant = cant;
     });
   }
 

@@ -1,7 +1,16 @@
 export class Lote {
   public static fromJson(json: any) {
-    const { id, createdAt, updatedAt, code, cant, price, register, expiry } =
-      json;
+    const {
+      id,
+      createdAt,
+      updatedAt,
+      code,
+      cant,
+      cant_out,
+      price,
+      register,
+      expiry,
+    } = json;
 
     return new Lote(
       id,
@@ -9,6 +18,7 @@ export class Lote {
       updatedAt,
       code,
       cant,
+      cant_out,
       price,
       register,
       expiry
@@ -21,6 +31,7 @@ export class Lote {
     public updatedAt: Date,
     public code: string,
     public cant: number,
+    public cant_out: number,
     public price: number,
     public register: Date,
     public expiry: Date

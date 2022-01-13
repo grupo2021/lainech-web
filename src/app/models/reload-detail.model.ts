@@ -6,6 +6,7 @@ export class ReloadDetail {
     createdAt,
     updatedAt,
     subtotal,
+    precio_unitario,
     cant,
     cant_sold,
     product,
@@ -15,6 +16,7 @@ export class ReloadDetail {
       createdAt,
       updatedAt,
       subtotal,
+      precio_unitario,
       cant,
       cant_sold,
       Product.fromJson(product)
@@ -26,6 +28,7 @@ export class ReloadDetail {
     public createdAt: Date,
     public updatedAt: Date,
     public subtotal: number,
+    public precio_unitario: number,
     public cant: number,
     public cant_sold: number,
     public product: Product

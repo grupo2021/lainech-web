@@ -13,7 +13,14 @@ import { AppState } from 'src/app/state/app.reducer';
 export class ProductLotesListComponent implements OnInit, OnDestroy {
   public product!: Product | null;
   private productSubs!: Subscription;
-  displayedColumns = ['code', 'cant', 'price', 'register', 'expiry'];
+  displayedColumns = [
+    'code',
+    'cant',
+    'cant_out',
+    'price',
+    'register',
+    'expiry',
+  ];
 
   constructor(private store: Store<AppState>) {}
 
