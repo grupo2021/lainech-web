@@ -17,6 +17,19 @@ export class Sale {
       const rds = saleDetails as [];
       details = rds.map((r) => SaleDetail.fromJson(r));
     }
+    if (!client) {
+      return new Sale(
+        id,
+        createdAt,
+        updatedAt,
+        date,
+        total,
+        status,
+        UserSmall.fromJson(user),
+        null,
+        details
+      );
+    }
 
     return new Sale(
       id,
@@ -25,8 +38,8 @@ export class Sale {
       date,
       total,
       status,
-      Client.fromJson(client),
       UserSmall.fromJson(user),
+      Client.fromJson(client) ?? null,
       details
     );
   }
@@ -38,8 +51,8 @@ export class Sale {
     public date: number,
     public total: number,
     public status: string,
-    public client: Client,
     public user: UserSmall,
+    public client: Client | null,
     public saleDetails: SaleDetail[]
   ) {}
 }

@@ -14,6 +14,10 @@ export class SaleService {
 
   create(total: number, clientId: number, saleDetails: string) {
     const date = new Date().toISOString();
+
+    if (clientId === 0) {
+      return this.http.post(this.url, { date, total, saleDetails });
+    }
     return this.http.post(this.url, { date, total, clientId, saleDetails });
   }
 

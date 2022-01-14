@@ -3,9 +3,13 @@
     <div class="header_container">
       <div>
         <p><strong>Promotor: </strong> {{ sale.user.name | uppercase }}</p>
-        <p>
+        <p *ngIf="sale.client">
           <strong>Cliente: </strong> {{ sale.client.name | uppercase }}
           {{ sale.client.surname | uppercase }}
+        </p>
+
+        <p *ngIf="!sale.client">
+          <strong>Cliente: </strong> No se asigno ningun cliente a esta venta
         </p>
         <p><strong>Fecha: </strong> {{ sale.date | date: "fullDate" }}</p>
         <p>

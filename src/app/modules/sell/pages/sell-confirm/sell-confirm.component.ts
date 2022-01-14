@@ -65,6 +65,16 @@ export class SellConfirmComponent implements OnInit, OnDestroy {
       this.clientSelect.markAllAsTouched();
       return;
     }
+
+    if (!this.preSells.length) {
+      this.matDialog.open(AlertComponent, {
+        data: {
+          title: 'No tienes productos',
+          content: 'Tienes que tener en tu lista al menos 1 producto.',
+        },
+      });
+      return;
+    }
     const details = this.preSells.map((p) => ({
       promotorProductId: p.id,
       unitPrice: p.price,
