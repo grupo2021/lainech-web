@@ -79,7 +79,6 @@ export class ReportGenerateComponent implements OnInit {
       .subscribe(({ data, count }) => {
         this.store.dispatch(stopLoading());
         this.dataReport = data;
-        console.log(this.dataReport);
         this.count = count;
       });
   }
