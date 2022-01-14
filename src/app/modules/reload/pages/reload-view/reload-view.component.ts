@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription, switchMap } from 'rxjs';
 import { AlertComponent } from 'src/app/layouts/alert/alert.component';
+import { CandelDialogComponent } from 'src/app/layouts/candel-dialog/candel-dialog.component';
 import { ConfirmDialogComponent } from 'src/app/layouts/confirm-dialog/confirm-dialog.component';
 import { Reload } from 'src/app/models/reload.model';
 import { User } from 'src/app/models/user.model';
@@ -106,31 +107,53 @@ export class ReloadViewComponent implements OnInit, OnDestroy {
   }
 
   cancelledReload() {
-    const dialog = this.matDialog.open(ConfirmDialogComponent, {
-      data: {
-        content:
-          'Esta acción es irreversible, ¿esta seguro de anular esta solidud?',
-      },
-    });
+    const dialog = this.matDialog.open(CandelDialogComponent);
 
-    dialog.afterClosed().subscribe((res) => {
-      if (res) {
-        this.store.dispatch(initLoading());
-        this.reloadService.cancelled(this.reload.id).subscribe({
-          next: (res) => {
-            this.store.dispatch(stopLoading());
-            this.reload = res;
+    dialog.afterClosed().subscribe((description) => {
+      if (description === undefined) {
+        this.matDialog.open(AlertComponent, {
+          data: {
+            title: 'Oops',
+            content: 'La descripcion es obligatoria para anular esta solicitud',
           },
-          error: (e) => {
-            this.store.dispatch(stopLoading());
-            const errors = e.error.messages as string[];
-            this.matDialog.open(AlertComponent, {
-              data: {
-                title: 'No se completo la transacción',
-                content: errors?.join('. '),
-              },
-            });
+        });
+        return;
+      }
+
+      if (!description) {
+        return;
+      }
+
+      if (description) {
+        const dialog = this.matDialog.open(ConfirmDialogComponent, {
+          data: {
+            content:
+              'Esta acción es irreversible, ¿esta seguro de anular esta solidud?',
           },
+        });
+
+        dialog.afterClosed().subscribe((res) => {
+          if (res) {
+            this.store.dispatch(initLoading());
+            this.reloadService
+              .cancelled(this.reload.id, description)
+              .subscribe({
+                next: (res) => {
+                  this.store.dispatch(stopLoading());
+                  this.reload = res;
+                },
+                error: (e) => {
+                  this.store.dispatch(stopLoading());
+                  const errors = e.error.messages as string[];
+                  this.matDialog.open(AlertComponent, {
+                    data: {
+                      title: 'No se completo la transacción',
+                      content: errors?.join('. '),
+                    },
+                  });
+                },
+              });
+          }
         });
       }
     });

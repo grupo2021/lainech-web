@@ -86,9 +86,9 @@ export class ReloadService {
       .pipe(map((res) => Reload.fromJson(res)));
   }
 
-  public cancelled(id: number) {
+  public cancelled(id: number, return_description: string) {
     return this.http
-      .post(`${this.url}/change/cancelled/${id}`, {})
+      .post(`${this.url}/change/cancelled/${id}`, { return_description })
       .pipe(map((res) => Reload.fromJson(res)));
   }
 }

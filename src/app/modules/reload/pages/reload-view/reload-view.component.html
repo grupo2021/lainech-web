@@ -33,6 +33,16 @@
           </p>
         </div>
       </div>
+      <div *ngIf="reload.status === 'ANULADO'">
+        <h2>Motivo de anulacion:</h2>
+        <p>
+          {{
+            reload.return_description
+              ? reload.return_description
+              : "No se registro el motivo"
+          }}
+        </p>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <ng-container

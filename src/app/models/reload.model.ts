@@ -9,6 +9,7 @@ export class Reload {
     date,
     total,
     status,
+    return_description,
     user,
     reloadDetails,
   }: any) {
@@ -25,6 +26,7 @@ export class Reload {
       date,
       total,
       status,
+      return_description,
       UserSmall.fromJson(user),
       details
     );
@@ -37,6 +39,7 @@ export class Reload {
     public date: number,
     public total: number,
     public status: ReloadStatus,
+    public return_description: string,
     public user: UserSmall,
     public reloadDetails: ReloadDetail[]
   ) {}
