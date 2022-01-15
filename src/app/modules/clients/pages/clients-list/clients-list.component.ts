@@ -18,7 +18,7 @@ import { ClientesDataSouce } from './clients-datasource';
 })
 export class ClientsListComponent implements OnInit {
   dataSource!: ClientesDataSouce;
-  displayedColumns = ['name', 'surname'];
+  displayedColumns = ['trade_name', 'owner', 'type'];
 
   page = 0;
   take = 5;

@@ -13,6 +13,10 @@ export class Client {
       identification_number,
       image,
       coords,
+      trade_name,
+      type,
+      person_charge,
+      phone_person_charge,
       user,
     } = json;
     return new Client(
@@ -26,6 +30,10 @@ export class Client {
       identification_number,
       image,
       coords,
+      trade_name,
+      type,
+      person_charge,
+      phone_person_charge,
       UserSmall.fromJson(user)
     );
   }
@@ -40,6 +48,10 @@ export class Client {
     public identification_number: string,
     public image: string,
     public coords: string,
+    public trade_name: string,
+    public type: string,
+    public person_charge: string,
+    public phone_person_charge: string,
     public user: UserSmall
   ) {}
 }

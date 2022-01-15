@@ -11,22 +11,29 @@
   <mat-table
     [dataSource]="dataSource"
     matSort
-    matSortActive="name"
+    matSortActive="trade_name"
     matSortDirection="asc"
     matSortDisableClear
   >
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="trade_name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        NOMBRE
+        NEGOCIO
       </mat-header-cell>
       <mat-cell *matCellDef="let client">
-        {{ client.name | uppercase }}
+        {{ client.trade_name | uppercase }}
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="surname">
-      <mat-header-cell *matHeaderCellDef> APELLLIDO </mat-header-cell>
-      <mat-cell *matCellDef="let client">{{ client.surname }}</mat-cell>
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef> TIPO </mat-header-cell>
+      <mat-cell *matCellDef="let client">{{ client.type }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="owner">
+      <mat-header-cell *matHeaderCellDef> PROPIETARIO </mat-header-cell>
+      <mat-cell *matCellDef="let client">
+        {{ client.name }} {{ client.surname }}
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

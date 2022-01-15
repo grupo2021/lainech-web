@@ -94,6 +94,19 @@ export class ClientFormComponent implements OnInit {
         this.client ? this.client.identification_number : '',
         [Validators.required],
       ],
+      trade_name: [
+        this.client ? this.client.trade_name : '',
+        Validators.required,
+      ],
+      type: [this.client ? this.client.type : 'SUCURSAL', Validators.required],
+      person_charge: [
+        this.client ? this.client.person_charge : '',
+        Validators.required,
+      ],
+      phone_person_charge: [
+        this.client ? this.client.phone_person_charge : '',
+        [Validators.required, Validators.pattern(this.phonePattern)],
+      ],
       phones: this.fb.array(
         this.client
           ? this.createFormControls(JSON.parse(this.client.phones))
@@ -108,10 +121,29 @@ export class ClientFormComponent implements OnInit {
   }
 
   private create() {
-    const { name, surname, address, phones, identification_number } =
-      this.form.value;
+    const {
+      name,
+      surname,
+      address,
+      phones,
+      identification_number,
+      trade_name,
+      type,
+      person_charge,
+      phone_person_charge,
+    } = this.form.value;
     this.clientService
-      .create(name, surname, address, identification_number, phones)
+      .create(
+        name,
+        surname,
+        address,
+        identification_number,
+        phones,
+        trade_name,
+        type,
+        person_charge,
+        phone_person_charge
+      )
       .subscribe({
         next: (client) => {
           this.router.navigate(['clients', client.id, 'view']);
@@ -131,8 +163,18 @@ export class ClientFormComponent implements OnInit {
       });
   }
   private update() {
-    const { name, surname, address, phones, identification_number } =
-      this.form.value;
+    const {
+      name,
+      surname,
+      address,
+      phones,
+      identification_number,
+      trade_name,
+      type,
+      person_charge,
+      phone_person_charge,
+    } = this.form.value;
+
     this.clientService
       .update(
         this.client.id,
@@ -140,7 +182,11 @@ export class ClientFormComponent implements OnInit {
         surname,
         address,
         identification_number,
-        phones
+        phones,
+        trade_name,
+        type,
+        person_charge,
+        phone_person_charge
       )
       .subscribe({
         next: (client) => {

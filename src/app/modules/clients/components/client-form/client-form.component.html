@@ -5,14 +5,14 @@
   fxLayoutGap="8px"
 >
   <mat-form-field appearance="fill">
-    <mat-label>Nombre</mat-label>
+    <mat-label>Nombre propietario</mat-label>
     <input matInput placeholder="JUAN" type="text" formControlName="name" />
     <mat-icon matSuffix color="primary">face</mat-icon>
     <mat-hint>Campo obligatorio</mat-hint>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Apellidos</mat-label>
+    <mat-label>Apellidos propietario</mat-label>
     <input matInput placeholder="JUAN" type="text" formControlName="surname" />
     <mat-icon matSuffix color="primary">face</mat-icon>
   </mat-form-field>
@@ -29,9 +29,51 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
+    <mat-label>Nombre del negocio</mat-label>
+    <input
+      matInput
+      placeholder="FARMACIA"
+      type="text"
+      formControlName="trade_name"
+    />
+    <mat-icon matSuffix color="primary">home</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo del negocio</mat-label>
+    <mat-select formControlName="type">
+      <mat-option value="SUCURSAL">SUCURSAL</mat-option>
+      <mat-option value="CENTRAL">CENTRAL</mat-option>
+      <mat-option value="TIENDA">TIENDA</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
     <mat-label>Dirección</mat-label>
     <input matInput placeholder="JUAN" type="text" formControlName="address" />
     <mat-icon matSuffix color="primary">home</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Encargado</mat-label>
+    <input
+      matInput
+      placeholder="JUAN"
+      type="text"
+      formControlName="person_charge"
+    />
+    <mat-icon matSuffix color="primary">face</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Telefono del encargado</mat-label>
+    <input
+      matInput
+      placeholder="JUAN"
+      type="text"
+      formControlName="phone_person_charge"
+    />
+    <mat-icon matSuffix color="primary">phone</mat-icon>
   </mat-form-field>
 
   <div
@@ -60,7 +102,7 @@
   </div>
 
   <div formArrayName="phones" style="width: 80%">
-    <mat-label>Telefonos:</mat-label>
+    <mat-label>Telefonos del negocio:</mat-label>
     <ng-container *ngIf="!client?.phones">
       <p>No hay telefonos registrados</p>
     </ng-container>

@@ -11,8 +11,19 @@
     </div>
     <mat-card-content>
       <h2>Datos del cliente</h2>
-      <p><strong>Nombre: </strong> {{ client.name | uppercase }}</p>
-      <p><strong>APELLIDOS: </strong> {{ client.surname | uppercase }}</p>
+      <p>
+        <strong>Nombre del negocio: </strong>
+        {{ client.trade_name | uppercase }}
+      </p>
+
+      <p>
+        <strong>Tipo del negocio: </strong>
+        {{ client.type | uppercase }}
+      </p>
+      <p>
+        <strong>Propietario: </strong> {{ client.name | uppercase }}
+        {{ client.surname | uppercase }}
+      </p>
       <p>
         <strong>CI o NIT: </strong>
         {{ client.identification_number | uppercase }}
@@ -20,6 +31,11 @@
       <p>
         <strong>DIRECCIÓN:</strong>
         {{ client.address | uppercase }}
+      </p>
+
+      <p><strong>Encargado: </strong> {{ client.person_charge }}</p>
+      <p>
+        <strong>Telefono encargado: </strong> {{ client.phone_person_charge }}
       </p>
       <p><strong>TELEFONOS: </strong></p>
       <mat-chip-list #chipList aria-label="Fruit selection">

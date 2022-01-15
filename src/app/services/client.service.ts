@@ -37,7 +37,11 @@ export class ClientService {
     surname: string,
     address: string,
     identification_number: string,
-    phones: string[]
+    phones: string[],
+    trade_name: string,
+    type: string,
+    person_charge: string,
+    phone_person_charge: string
   ) {
     return this.http
       .post(this.url, {
@@ -46,6 +50,10 @@ export class ClientService {
         address,
         identification_number: identification_number.toUpperCase(),
         phones: JSON.stringify(phones),
+        trade_name: trade_name.toUpperCase(),
+        type,
+        person_charge: person_charge.toUpperCase(),
+        phone_person_charge,
       })
       .pipe(map((res) => Client.fromJson(res)));
   }
@@ -56,7 +64,11 @@ export class ClientService {
     surname: string,
     address: string,
     identification_number: string,
-    phones: string[]
+    phones: string[],
+    trade_name: string,
+    type: string,
+    person_charge: string,
+    phone_person_charge: string
   ) {
     return this.http
       .put(`${this.url}/${clientId}`, {
@@ -65,6 +77,10 @@ export class ClientService {
         address,
         identification_number: identification_number.toUpperCase(),
         phones: JSON.stringify(phones),
+        trade_name: trade_name.toUpperCase(),
+        type,
+        person_charge: person_charge.toUpperCase(),
+        phone_person_charge,
       })
       .pipe(map((res) => Client.fromJson(res)));
   }
