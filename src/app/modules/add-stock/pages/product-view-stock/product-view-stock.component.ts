@@ -29,6 +29,12 @@ export class ProductViewStockComponent implements OnInit, OnDestroy {
     Validators.max(9999),
   ]);
 
+  public cantOutInput = new FormControl(3, [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(9999),
+  ]);
+
   public cant = 0;
   private productsStockSubs!: Subscription;
 
@@ -71,9 +77,13 @@ export class ProductViewStockComponent implements OnInit, OnDestroy {
   }
 
   public removeProduct() {
-    console.log('asdfa');
     this.store.dispatch(
-      removeProduct({ productStock: ProductStock.fromProduct(this.product, 0) })
+      removeProduct({
+        productStock: ProductStock.fromProduct(
+          this.product,
+          this.cantOutInput.value
+        ),
+      })
     );
   }
 }

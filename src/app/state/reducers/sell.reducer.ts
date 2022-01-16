@@ -61,9 +61,9 @@ const _sellReducer = createReducer(
       : state.total,
     cant: state.preSells.find((p) => p.id === preSell.id)
       ? state.preSells.find((p) => p.id === preSell.id)!.cant <= preSell.cant
-        ? state.total - state.preSells.find((p) => p.id === preSell.id)!.cant
-        : state.total - preSell.cant
-      : state.total,
+        ? state.cant - state.preSells.find((p) => p.id === preSell.id)!.cant
+        : state.cant - preSell.cant
+      : state.cant,
   })),
 
   on(incrementPreSell, (state, { preSell }) => ({

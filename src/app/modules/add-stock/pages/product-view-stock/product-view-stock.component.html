@@ -59,9 +59,20 @@
           </button>
         </div>
 
-        <button mat-raised-button color="warn" (click)="removeProduct()">
-          QUITAR
-        </button>
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="cantOutInput"
+              type="number"
+              min="1"
+              max="99999"
+            />
+          </mat-form-field>
+          <button mat-raised-button color="warn" (click)="removeProduct()">
+            QUITAR
+          </button>
+        </div>
       </div>
     </mat-card-actions>
   </mat-card>

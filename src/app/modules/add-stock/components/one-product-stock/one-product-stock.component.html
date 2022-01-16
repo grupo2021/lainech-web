@@ -7,6 +7,9 @@
       <strong>{{ product.name | uppercase }}</strong>
     </p>
     <p><strong>Cantidad: </strong> {{ product.cant }}</p>
+    <p>
+      <strong>Precio unitario: </strong> {{ product.price | currency: "Bs." }}
+    </p>
     <p><strong>Subtotal: </strong> {{ product.subtotal | currency: "Bs. " }}</p>
   </div>
 

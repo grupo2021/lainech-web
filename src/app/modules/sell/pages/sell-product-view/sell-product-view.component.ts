@@ -21,7 +21,7 @@ export class SellProductViewComponent implements OnInit, OnDestroy {
   public product!: PromotorProduct;
   private productSubs!: Subscription;
 
-  public total = 0;
+  public cant = 0;
   private preSellSubs!: Subscription;
 
   cantInput = new FormControl(6, [
@@ -69,7 +69,7 @@ export class SellProductViewComponent implements OnInit, OnDestroy {
 
     this.preSellSubs = this.store
       .select('sell')
-      .subscribe(({ total }) => (this.total = total));
+      .subscribe(({ cant }) => (this.cant = cant));
   }
 
   ngOnDestroy(): void {

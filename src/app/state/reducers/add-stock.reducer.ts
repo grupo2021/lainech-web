@@ -40,13 +40,33 @@ const _productStockReducer = createReducer(
   })),
 
   on(removeProduct, (state, { productStock }) => ({
-    products: state.products.filter((p) => p.id !== productStock.id),
+    products: state.products.find((p) => p.id === productStock.id)
+      ? state.products.find((p) => p.id === productStock.id)!.cant <=
+        productStock.cant
+        ? state.products.filter((p) => p.id !== productStock.id)
+        : state.products.map((p) =>
+            p.id === productStock.id
+              ? {
+                  ...p,
+                  subtotal: p.subtotal - productStock.cant * productStock.price,
+                  cant: p.cant - productStock.cant,
+                }
+              : p
+          )
+      : [...state.products],
     total: state.products.find((p) => p.id === productStock.id)
-      ? state.total -
-        state.products.find((p) => p.id === productStock.id)!.subtotal
+      ? state.products.find((p) => p.id === productStock.id)!.cant <=
+        productStock.cant
+        ? state.total -
+          state.products.find((p) => p.id === productStock.id)!.subtotal
+        : state.total - productStock.subtotal
       : state.total,
     cant: state.products.find((p) => p.id === productStock.id)
-      ? state.cant - state.products.find((p) => p.id === productStock.id)!.cant
+      ? state.products.find((p) => p.id === productStock.id)!.cant <=
+        productStock.cant
+        ? state.cant -
+          state.products.find((p) => p.id === productStock.id)!.cant
+        : state.cant - productStock.cant
       : state.cant,
   })),
 
