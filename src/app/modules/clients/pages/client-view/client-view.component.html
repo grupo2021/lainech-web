@@ -20,12 +20,17 @@
         <strong>Tipo del negocio: </strong>
         {{ client.type | uppercase }}
       </p>
+
+      <p>
+        <strong>Punto de venta: </strong>
+        {{ client.sale_point | uppercase }}
+      </p>
       <p>
         <strong>Propietario: </strong> {{ client.name | uppercase }}
         {{ client.surname | uppercase }}
       </p>
       <p>
-        <strong>CI o NIT: </strong>
+        <strong>NIT: </strong>
         {{ client.identification_number | uppercase }}
       </p>
       <p>

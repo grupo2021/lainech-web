@@ -15,6 +15,7 @@ export class Client {
       coords,
       trade_name,
       type,
+      sale_point,
       person_charge,
       phone_person_charge,
       user,
@@ -32,6 +33,7 @@ export class Client {
       coords,
       trade_name,
       type,
+      sale_point,
       person_charge,
       phone_person_charge,
       UserSmall.fromJson(user)
@@ -50,6 +52,7 @@ export class Client {
     public coords: string,
     public trade_name: string,
     public type: string,
+    public sale_point: string,
     public person_charge: string,
     public phone_person_charge: string,
     public user: UserSmall

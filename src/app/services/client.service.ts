@@ -40,6 +40,7 @@ export class ClientService {
     phones: string[],
     trade_name: string,
     type: string,
+    sale_point: string,
     person_charge: string,
     phone_person_charge: string
   ) {
@@ -52,6 +53,7 @@ export class ClientService {
         phones: JSON.stringify(phones),
         trade_name: trade_name.toUpperCase(),
         type,
+        sale_point,
         person_charge: person_charge.toUpperCase(),
         phone_person_charge,
       })
@@ -67,6 +69,7 @@ export class ClientService {
     phones: string[],
     trade_name: string,
     type: string,
+    sale_point: string,
     person_charge: string,
     phone_person_charge: string
   ) {
@@ -79,6 +82,7 @@ export class ClientService {
         phones: JSON.stringify(phones),
         trade_name: trade_name.toUpperCase(),
         type,
+        sale_point,
         person_charge: person_charge.toUpperCase(),
         phone_person_charge,
       })

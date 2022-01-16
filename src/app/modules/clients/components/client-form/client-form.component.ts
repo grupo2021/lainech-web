@@ -127,6 +127,7 @@ export class ClientFormComponent implements OnInit {
       identification_number,
       trade_name,
       type,
+      sale_point,
       person_charge,
       phone_person_charge,
     } = this.form.value;
@@ -139,6 +140,7 @@ export class ClientFormComponent implements OnInit {
         phones,
         trade_name,
         type,
+        sale_point,
         person_charge,
         phone_person_charge
       )
@@ -169,6 +171,7 @@ export class ClientFormComponent implements OnInit {
       identification_number,
       trade_name,
       type,
+      sale_point,
       person_charge,
       phone_person_charge,
     } = this.form.value;
@@ -183,6 +186,7 @@ export class ClientFormComponent implements OnInit {
         phones,
         trade_name,
         type,
+        sale_point,
         person_charge,
         phone_person_charge
       )
