@@ -25,6 +25,18 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
+    <mat-label>Cantidad vendida</mat-label>
+    <input
+      matInput
+      placeholder="0"
+      type="number"
+      min="0"
+      formControlName="cant_out"
+    />
+    <mat-icon matSuffix color="primary">inventory</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
     <mat-label>PRECIO</mat-label>
     <input
       matInput

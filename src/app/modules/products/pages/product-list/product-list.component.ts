@@ -18,7 +18,7 @@ import { ProductsDataSource } from './products-datasource';
 })
 export class ProductListComponent implements OnInit {
   dataSource!: ProductsDataSource;
-  displayedColumns = ['name', 'code', 'prefit'];
+  displayedColumns = ['name', 'code', 'price'];
 
   page = 0;
   take = 5;

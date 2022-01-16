@@ -29,10 +29,10 @@
       <mat-cell *matCellDef="let product">{{ product.code }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="prefit">
-      <mat-header-cell *matHeaderCellDef> % de utilidad</mat-header-cell>
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef>PRECIO</mat-header-cell>
       <mat-cell *matCellDef="let product">
-        {{ product.profit | number: "1.2" }} %
+        {{ product.price | currency: "Bs." }}
       </mat-cell>
     </ng-container>
 

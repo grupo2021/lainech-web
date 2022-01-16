@@ -59,9 +59,9 @@ export class ProductLoteFormComponent implements OnInit, OnDestroy {
   }
 
   private create() {
-    const { code, cant, price, register, expiry } = this.form.value;
+    const { code, cant, cant_out, price, register, expiry } = this.form.value;
     this.loteService
-      .create(this.product!.id, code, cant, price, register, expiry)
+      .create(this.product!.id, code, cant, cant_out, price, register, expiry)
       .subscribe({
         next: (lote) => this.handledSaveSuccess(lote),
         error: (e) => this.handledError(e),
@@ -69,9 +69,9 @@ export class ProductLoteFormComponent implements OnInit, OnDestroy {
   }
 
   private update() {
-    const { code, cant, price, register, expiry } = this.form.value;
+    const { code, cant, cant_out, price, register, expiry } = this.form.value;
     this.loteService
-      .update(this.lote.id, code, cant, price, register, expiry)
+      .update(this.lote.id, code, cant, cant_out, price, register, expiry)
       .subscribe({
         next: (lote) => this.handledSaveSuccess(lote),
         error: (e) => this.handledError(e),
@@ -103,6 +103,10 @@ export class ProductLoteFormComponent implements OnInit, OnDestroy {
       cant: [
         this.lote ? this.lote.cant : '',
         [Validators.required, Validators.min(1), Validators.max(999999)],
+      ],
+      cant_out: [
+        this.lote ? this.lote.cant_out : 0,
+        [Validators.required, Validators.min(0), Validators.max(999999)],
       ],
       price: [
         this.lote ? this.lote.price : 1,

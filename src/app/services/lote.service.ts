@@ -22,6 +22,7 @@ export class LoteService {
     productId: number,
     code: string,
     cant: number,
+    cant_out: number,
     price: number,
     register: Date,
     expiry: Date
@@ -31,6 +32,7 @@ export class LoteService {
         productId,
         code,
         cant,
+        cant_out,
         price,
         register,
         expiry,
@@ -42,6 +44,7 @@ export class LoteService {
     id: number,
     code: string,
     cant: number,
+    cant_out: number,
     price: number,
     register: Date,
     expiry: Date
@@ -50,6 +53,7 @@ export class LoteService {
       .put(`${this.url}/${id}`, {
         code,
         cant,
+        cant_out,
         price,
         register,
         expiry,
