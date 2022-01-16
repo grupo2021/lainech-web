@@ -1,12 +1,12 @@
 .card_container {
   margin-top: 1rem;
+  h2,
+  h3 {
+    margin: 0px;
+  }
 
   .card_header {
     width: 100%;
-    h2,
-    h3 {
-      margin: 0px;
-    }
   }
 
   .product_container {
@@ -16,6 +16,10 @@
       img {
         height: 180px;
         width: auto;
+      }
+      h2,
+      h3 {
+        text-align: center;
       }
     }
   }
