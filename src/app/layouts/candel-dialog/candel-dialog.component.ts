@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-candel-dialog',
@@ -10,7 +10,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class CandelDialogComponent implements OnInit {
   descriptionInput = new FormControl('', Validators.required);
 
-  constructor(public dialogRef: MatDialogRef<CandelDialogComponent>) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: { content: string }
+  ) {}
 
   ngOnInit(): void {}
 

@@ -1,4 +1,5 @@
 import { Category } from './category.model';
+import { UserSmall } from './user-small.model';
 
 export class PromotorProduct {
   public static fromJson({
@@ -7,15 +8,23 @@ export class PromotorProduct {
     updatedAt,
     cant,
     cant_out,
+    cant_returned,
     product,
+    user,
   }: any) {
+    let usermodel: UserSmall | null = null;
+    if (user) {
+      usermodel = UserSmall.fromJson(user);
+    }
     return new PromotorProduct(
       id,
       createdAt,
       updatedAt,
       cant,
       cant_out,
-      SoftProduct.fromJson(product)
+      cant_returned,
+      SoftProduct.fromJson(product),
+      usermodel
     );
   }
 
@@ -25,7 +34,9 @@ export class PromotorProduct {
     public updatedAt: Date,
     public cant: number,
     public cant_out: number,
-    public product: SoftProduct
+    public cant_returned: number,
+    public product: SoftProduct,
+    public user: UserSmall | null
   ) {}
 }
 

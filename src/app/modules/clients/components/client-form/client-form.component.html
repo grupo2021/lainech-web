@@ -18,7 +18,7 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>C.I. o NIT</mat-label>
+    <mat-label>NIT</mat-label>
     <input
       matInput
       placeholder="3453444CB"
@@ -29,7 +29,7 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Nombre del negocio</mat-label>
+    <mat-label>Nombre comercial</mat-label>
     <input
       matInput
       placeholder="FARMACIA"
@@ -42,9 +42,17 @@
   <mat-form-field appearance="fill">
     <mat-label>Tipo del negocio</mat-label>
     <mat-select formControlName="type">
-      <mat-option value="SUCURSAL">SUCURSAL</mat-option>
-      <mat-option value="CENTRAL">CENTRAL</mat-option>
+      <mat-option value="CADENA">CADENA</mat-option>
+      <mat-option value="FARMACIA">FARMACIA</mat-option>
       <mat-option value="TIENDA">TIENDA</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Punto de venta</mat-label>
+    <mat-select formControlName="sale_point">
+      <mat-option value="MATRIS">CASA MATRIZ</mat-option>
+      <mat-option value="SUCURSAL">SUCURSAL</mat-option>
     </mat-select>
   </mat-form-field>
 

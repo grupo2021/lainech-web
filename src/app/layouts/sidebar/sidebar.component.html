@@ -89,6 +89,15 @@
 
   <button
     mat-flat-button
+    [routerLink]="['/returns']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+  >
+    DEVOLUCIONES
+  </button>
+
+  <button
+    mat-flat-button
     *ngIf="isAdmin || isAlmacenero"
     [routerLink]="['/report']"
     routerLinkActive="active"

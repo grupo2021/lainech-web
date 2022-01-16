@@ -98,14 +98,12 @@ export class ClientFormComponent implements OnInit {
         this.client ? this.client.trade_name : '',
         Validators.required,
       ],
-      type: [this.client ? this.client.type : 'SUCURSAL', Validators.required],
-      person_charge: [
-        this.client ? this.client.person_charge : '',
-        Validators.required,
-      ],
+      type: [this.client ? this.client.type : 'CADENA', Validators.required],
+      sale_point: ['MATRIZ', Validators.required],
+      person_charge: [this.client ? this.client.person_charge : ''],
       phone_person_charge: [
         this.client ? this.client.phone_person_charge : '',
-        [Validators.required, Validators.pattern(this.phonePattern)],
+        [Validators.pattern(this.phonePattern)],
       ],
       phones: this.fb.array(
         this.client

@@ -1,0 +1,21 @@
+<div style="padding: 2rem">
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+    <button
+      mat-raised-button
+      [routerLink]="['./list']"
+      routerLinkActive="active"
+    >
+      LISTA
+    </button>
+
+    <button
+      mat-raised-button
+      *ngIf="isPromotor"
+      [routerLink]="['./new']"
+      routerLinkActive="active"
+    >
+      NUEVO
+    </button>
+  </div>
+  <router-outlet></router-outlet>
+</div>

@@ -3,10 +3,12 @@
 </div>
 <h1 mat-dialog-title>¡Cuidado!</h1>
 <div mat-dialog-content>
-  <p>¿Porqué estas anulando esta recarga?</p>
-  <mat-form-field appearance="fill">
-    <mat-label>Descripcion de la anulacion</mat-label>
-    <input matInput [formControl]="descriptionInput" />
+  <p>
+    {{ data.content ? data.content : "¿Porqué estas anulando esta recarga?" }}
+  </p>
+  <mat-form-field appearance="outline">
+    <mat-label>Motivo:</mat-label>
+    <textarea matInput [formControl]="descriptionInput"></textarea>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

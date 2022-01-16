@@ -1,0 +1,36 @@
+.card_container {
+  margin-top: 1rem;
+
+  .card_header {
+    width: 100%;
+    h2,
+    h3 {
+      margin: 0px;
+    }
+  }
+
+  .product_container {
+    display: flex;
+    justify-content: center;
+    .product {
+      img {
+        height: 180px;
+        width: auto;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card_container {
+    width: 80%;
+    margin: 1rem auto;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .card_container {
+    width: 60%;
+    margin: 1rem auto;
+  }
+}

@@ -97,6 +97,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
+  {
+    path: 'returns',
+    loadChildren: () =>
+      import('./modules/returns/returns.module').then((m) => m.ReturnsModule),
+    data: { roles: ['ADMIN', 'PROMOTOR', 'ALMACENERO'] },
+    canActivate: [AuthGuard],
+  },
+
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
 ];
 

@@ -1,0 +1,49 @@
+<div *ngIf="returns">
+  <mat-card class="card_container">
+    <mat-card-header>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        fxLayoutGap="16px"
+        class="card_header"
+      >
+        <div>
+          <h2>{{ returns.promotorProduct.user!.name | uppercase }}</h2>
+          <h3>
+            {{ returns.date | date: "fullDate" | uppercase }}
+          </h3>
+        </div>
+
+        <mat-chip-list>
+          <mat-chip [color]="chipColor" selected>
+            {{ returns.status }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="product_container">
+        <div class="product">
+          <h2>{{ returns.promotorProduct.product!.name }}</h2>
+          <img [src]="returns.promotorProduct.product.image" />
+          <p><strong>Cantidad devuelta: </strong>{{ returns.cant }}</p>
+        </div>
+      </div>
+      <p><strong>Motivo de la devolución: </strong>{{ returns.description }}</p>
+      <p *ngIf="returns.cancelled_description">
+        <strong>Anulado por: </strong>{{ returns.cancelled_description }}
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions *ngIf="!isPromotor && returns.status === 'PENDIENTE'">
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+        <button mat-raised-button color="warn" (click)="cancelled()">
+          ANULAR
+        </button>
+        <button mat-raised-button color="accent" (click)="approve()">
+          APROBAR
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
