@@ -4,7 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AlertComponent } from 'src/app/layouts/alert/alert.component';
+import { BestSaleReport } from 'src/app/models/best-sale-report.model';
 import { DataReport } from 'src/app/models/data-report.model';
+import { ReloadReport } from 'src/app/models/reaload-report.model';
+import { ReturnsReport } from 'src/app/models/returns-report.model';
+import { SaleReport } from 'src/app/models/sale-report.model';
 import { UserSmall } from 'src/app/models/user-small.model';
 import { ReportService } from 'src/app/services/report.service';
 import { UserService } from 'src/app/services/user.service';
@@ -19,14 +23,16 @@ import { AppState } from 'src/app/state/app.reducer';
 export class ReportGenerateComponent implements OnInit {
   public form!: FormGroup;
 
+  isDisabledStatus = false;
+
   public users: UserSmall[] = [];
   private usersSubs!: Subscription;
 
-  public dataReport!: DataReport;
-  public count = 0;
-  private dataReportSubs!: Subscription;
-
-  displayedColumns: string[] = ['date', 'details', 'total'];
+  public saleReports!: SaleReport[] | null;
+  public bestSaleReports!: BestSaleReport[] | null;
+  public realoadReports!: ReloadReport[] | null;
+  public returnsReports!: ReturnsReport[] | null;
+  private reportSubs!: Subscription;
 
   constructor(
     private store: Store<AppState>,
@@ -58,7 +64,7 @@ export class ReportGenerateComponent implements OnInit {
       new Date(this.form.get('endDate')?.value).setHours(23, 59, 59, 0)
     );
 
-    const { type, promotor } = this.form.value;
+    const { type, promotor, status } = this.form.value;
 
     if (initDate.getTime() > endDate.getTime()) {
       this.matDialog.open(AlertComponent, {
@@ -68,31 +74,49 @@ export class ReportGenerateComponent implements OnInit {
         },
       });
     }
+    this.setNullResponses();
     this.store.dispatch(initLoading());
-    this.reportService
+    this.reportSubs = this.reportService
       .generateReport(
         type,
         initDate.toISOString(),
         endDate.toISOString(),
-        promotor
+        promotor,
+        status
       )
-      .subscribe(({ data, count }) => {
+      .subscribe(({ data, count, type }) => {
         this.store.dispatch(stopLoading());
-        this.dataReport = data;
-        this.count = count;
+        if (type === 'SALES') {
+          this.saleReports = data;
+        } else if (type === 'BEST_SALE') {
+          this.bestSaleReports = data;
+        } else if (type === 'RELOADS') {
+          this.realoadReports = data;
+        } else if (type === 'RETURNS') {
+          this.returnsReports = data;
+        }
       });
   }
 
   ngOnDestroy(): void {
     this.usersSubs?.unsubscribe();
+    this.reportSubs?.unsubscribe();
   }
 
   private createForm() {
     this.form = this.fb.group({
-      type: ['', Validators.required],
+      type: ['VENTAS', Validators.required],
+      status: ['ALL', Validators.required],
       initDate: [new Date().toISOString(), Validators.required],
       endDate: [new Date().toISOString(), Validators.required],
-      promotor: ['', Validators.required],
+      promotor: ['0', Validators.required],
     });
+  }
+
+  private setNullResponses() {
+    this.bestSaleReports = null;
+    this.saleReports = null;
+    this.realoadReports = null;
+    this.returnsReports = null;
   }
 }

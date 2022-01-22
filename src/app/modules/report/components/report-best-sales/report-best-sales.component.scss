@@ -1,0 +1,21 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  p {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+.mat-column-code {
+  flex: 0 0 10%;
+}
+
+.mat-column-total {
+  flex: 0 0 10%;
+}
+
+.mat-column-cant {
+  flex: 0 0 10%;
+}

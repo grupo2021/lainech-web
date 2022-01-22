@@ -1,0 +1,37 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detail {
+  margin-bottom: 0.5rem;
+  p {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+.mat-column-code {
+  flex: 0 0 10%;
+}
+
+.mat-column-status {
+  flex: 0 0 10%;
+}
+
+.mat-column-total {
+  flex: 0 0 15%;
+}
+
+.mat-column-date {
+  flex: 0 0 15%;
+}
+
+.mat-column-promotor {
+  flex: 0 0 15%;
+}
+
+.mat-column-details {
+  flex: 0 0 30%;
+}

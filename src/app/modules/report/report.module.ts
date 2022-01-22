@@ -9,6 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ReportResultComponent } from './pages/report-result/report-result.component';
 import { ReportGenerateComponent } from './pages/report-generate/report-generate.component';
 import { ReportListComponent } from './components/report-list/report-list.component';
+import { ReportSalesComponent } from './components/report-sales/report-sales.component';
+import { ReportBestSalesComponent } from './components/report-best-sales/report-best-sales.component';
+import { ReportReloadsComponent } from './components/report-reloads/report-reloads.component';
+import { ReportReturnsComponent } from './components/report-returns/report-returns.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,10 @@ import { ReportListComponent } from './components/report-list/report-list.compon
     ReportResultComponent,
     ReportGenerateComponent,
     ReportListComponent,
+    ReportSalesComponent,
+    ReportBestSalesComponent,
+    ReportReloadsComponent,
+    ReportReturnsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,58 @@
+<div>
+  <ng-template #listEmpty>
+    <h2>No hay reportes que cumplan esta configuración.</h2>
+  </ng-template>
+
+  <div *ngIf="bestSales?.length; else listEmpty">
+    <p><strong>Cantidad de registros: </strong>{{ bestSales.length }}</p>
+    <mat-table [dataSource]="bestSales">
+      <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef> CODIGO </mat-header-cell>
+        <mat-cell *matCellDef="let row"> 00{{ row.id }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="client">
+        <mat-header-cell *matHeaderCellDef> CLIENTE </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.name | uppercase }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="promotor">
+        <mat-header-cell *matHeaderCellDef> PROMOTOR </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{
+          row.user.name | uppercase
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <mat-header-cell *matHeaderCellDef> TOTAL ACUMULADO </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{
+          row.total | currency: "Bs."
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cant">
+        <mat-header-cell *matHeaderCellDef>
+          CANTIDAD ACUMULADA
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{
+          row.cant | number: "1.2"
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="product">
+        <mat-header-cell *matHeaderCellDef> MEJOR PRODUCTO </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <div class="product">
+            <p><strong>Producto: </strong> {{ row.best_product.product }}</p>
+            <p><strong>Cantidad: </strong> {{ row.best_product.cant }}</p>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+</div>

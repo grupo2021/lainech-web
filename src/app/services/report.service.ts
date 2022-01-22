@@ -2,7 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { BestSaleReport } from '../models/best-sale-report.model';
 import { DataReport } from '../models/data-report.model';
+import { ReloadReport } from '../models/reaload-report.model';
+import { ReturnsReport } from '../models/returns-report.model';
+import { SaleReport } from '../models/sale-report.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,17 +20,46 @@ export class ReportService {
     type: string,
     initDate: string,
     endDate: string,
-    userId: number
+    userId: number,
+    status: string
   ) {
     return this.http
-      .post<{ data: any; count: number }>(this.url, {
+      .post<{ data: any[]; count: number; type: string }>(this.url, {
         type,
         initDate,
         endDate,
         userId,
+        status,
       })
       .pipe(
-        map(({ data, count }) => ({ data: DataReport.fromJson(data), count }))
+        map(({ type, data, count }) => {
+          if (type === 'SALES') {
+            return {
+              type,
+              count,
+              data: data.map((d) => SaleReport.fromJson(d)),
+            };
+          } else if (type === 'BEST_SALE') {
+            return {
+              type,
+              count,
+              data: data.map((d) => BestSaleReport.fromJson(d)),
+            };
+          } else if (type === 'RELOADS') {
+            return {
+              type,
+              count,
+              data: data.map((d) => ReloadReport.fromJson(d)),
+            };
+          } else if (type === 'RETURNS') {
+            return {
+              type,
+              count,
+              data: data.map((d) => ReturnsReport.fromJson(d)),
+            };
+          }
+          return { type, count, data };
+        })
       );
   }
 }

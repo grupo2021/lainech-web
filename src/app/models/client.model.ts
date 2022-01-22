@@ -20,6 +20,11 @@ export class Client {
       phone_person_charge,
       user,
     } = json;
+
+    let userModel = null;
+    if (user) {
+      userModel = UserSmall.fromJson(user);
+    }
     return new Client(
       id,
       createdAt,
@@ -36,7 +41,7 @@ export class Client {
       sale_point,
       person_charge,
       phone_person_charge,
-      UserSmall.fromJson(user)
+      userModel
     );
   }
   constructor(
@@ -55,6 +60,6 @@ export class Client {
     public sale_point: string,
     public person_charge: string,
     public phone_person_charge: string,
-    public user: UserSmall
+    public user: UserSmall | null
   ) {}
 }

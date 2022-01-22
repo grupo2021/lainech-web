@@ -1,0 +1,60 @@
+<div>
+  <ng-template #listEmpty>
+    <h2>No hay reportes que cumplan esta configuración.</h2>
+  </ng-template>
+
+  <div *ngIf="saleReports?.length; else listEmpty">
+    <p><strong>Cantidad de registros: </strong>{{ saleReports.length }}</p>
+    <mat-table [dataSource]="saleReports">
+      <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef> CODIGO </mat-header-cell>
+        <mat-cell *matCellDef="let row"> 00{{ row.id }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> FECHA </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.date | date }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="promotor">
+        <mat-header-cell *matHeaderCellDef> PROMOTOR </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{
+          row.user.name | uppercase
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <mat-header-cell *matHeaderCellDef> TOTAL </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{
+          row.total | currency: "Bs."
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> ESTADO </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.status | uppercase }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <mat-header-cell *matHeaderCellDef> DETALLE </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <div class="details">
+            <div *ngFor="let detail of row.details" class="detail">
+              <p><strong>Producto: </strong> {{ detail.product.name }}</p>
+              <p>
+                <strong>P/U: </strong> {{ detail.precio_unitario }} -
+                <strong>Cantidad: </strong> {{ detail.cant }}
+              </p>
+              <p><strong>Subtotal: </strong> {{ detail.subtotal }}</p>
+            </div>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+</div>
