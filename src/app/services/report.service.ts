@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BestSaleReport } from '../models/best-sale-report.model';
-import { DataReport } from '../models/data-report.model';
 import { ReloadReport } from '../models/reaload-report.model';
 import { ReturnsReport } from '../models/returns-report.model';
 import { SaleReport } from '../models/sale-report.model';
@@ -29,7 +28,7 @@ export class ReportService {
         initDate,
         endDate,
         userId,
-        status,
+        status: status ? status : 'ALL',
       })
       .pipe(
         map(({ type, data, count }) => {

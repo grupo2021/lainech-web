@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { distinctUntilChanged, Subscription } from 'rxjs';
 import { AlertComponent } from 'src/app/layouts/alert/alert.component';
 import { BestSaleReport } from 'src/app/models/best-sale-report.model';
 import { DataReport } from 'src/app/models/data-report.model';
@@ -34,6 +39,14 @@ export class ReportGenerateComponent implements OnInit {
   public returnsReports!: ReturnsReport[] | null;
   private reportSubs!: Subscription;
 
+  get status(): FormControl {
+    return this.form.get('status') as FormControl;
+  }
+
+  get type(): FormControl {
+    return this.form.get('type') as FormControl;
+  }
+
   constructor(
     private store: Store<AppState>,
     private fb: FormBuilder,
@@ -49,6 +62,12 @@ export class ReportGenerateComponent implements OnInit {
       this.store.dispatch(stopLoading());
       this.users = res;
     });
+
+    this.type.valueChanges
+      .pipe(distinctUntilChanged())
+      .subscribe((result) =>
+        result === 'BEST' ? this.status.disable() : this.status.enable()
+      );
   }
 
   public onSubmit() {
