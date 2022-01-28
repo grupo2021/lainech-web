@@ -13,6 +13,7 @@ import { ReportSalesComponent } from './components/report-sales/report-sales.com
 import { ReportBestSalesComponent } from './components/report-best-sales/report-best-sales.component';
 import { ReportReloadsComponent } from './components/report-reloads/report-reloads.component';
 import { ReportReturnsComponent } from './components/report-returns/report-returns.component';
+import { ReportBestProductComponent } from './components/report-best-product/report-best-product.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ReportReturnsComponent } from './components/report-returns/report-retur
     ReportBestSalesComponent,
     ReportReloadsComponent,
     ReportReturnsComponent,
+    ReportBestProductComponent,
   ],
   imports: [
     CommonModule,

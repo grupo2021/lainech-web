@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { distinctUntilChanged, Subscription } from 'rxjs';
 import { AlertComponent } from 'src/app/layouts/alert/alert.component';
+import { BestProductReport } from 'src/app/models/best-product-report.model';
 import { BestSaleReport } from 'src/app/models/best-sale-report.model';
 import { DataReport } from 'src/app/models/data-report.model';
 import { ReloadReport } from 'src/app/models/reaload-report.model';
@@ -37,6 +38,7 @@ export class ReportGenerateComponent implements OnInit {
   public bestSaleReports!: BestSaleReport[] | null;
   public realoadReports!: ReloadReport[] | null;
   public returnsReports!: ReturnsReport[] | null;
+  public bestProductReports!: BestProductReport[] | null;
   private reportSubs!: Subscription;
 
   get status(): FormControl {
@@ -113,6 +115,8 @@ export class ReportGenerateComponent implements OnInit {
           this.realoadReports = data;
         } else if (type === 'RETURNS') {
           this.returnsReports = data;
+        } else if (type === 'BEST-PRODUCT') {
+          this.bestProductReports = data;
         }
       });
   }
@@ -137,5 +141,6 @@ export class ReportGenerateComponent implements OnInit {
     this.saleReports = null;
     this.realoadReports = null;
     this.returnsReports = null;
+    this.bestProductReports = null;
   }
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { BestProductReport } from '../models/best-product-report.model';
 import { BestSaleReport } from '../models/best-sale-report.model';
 import { ReloadReport } from '../models/reaload-report.model';
 import { ReturnsReport } from '../models/returns-report.model';
@@ -55,6 +56,12 @@ export class ReportService {
               type,
               count,
               data: data.map((d) => ReturnsReport.fromJson(d)),
+            };
+          } else if (type === 'BEST-PRODUCT') {
+            return {
+              type,
+              count,
+              data: data.map((d) => BestProductReport.fromJson(d)),
             };
           }
           return { type, count, data };

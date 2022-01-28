@@ -1,0 +1,32 @@
+<div>
+  <ng-template #listEmpty>
+    <h2>No hay reportes que cumplan esta configuración.</h2>
+  </ng-template>
+
+  <div *ngIf="bestProducts?.length; else listEmpty">
+    <p><strong>Cantidad de registros: </strong>{{ bestProducts.length }}</p>
+    <mat-table [dataSource]="bestProducts">
+      <ng-container matColumnDef="product">
+        <mat-header-cell *matHeaderCellDef> PRODUCTO </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.product | uppercase }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cant_acum">
+        <mat-header-cell *matHeaderCellDef> CANTIDAD VENDIDA </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{
+          row.cant_acum | number: "1.2"
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="total_acum">
+        <mat-header-cell *matHeaderCellDef> TOTAL VENTA </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{
+          row.total_acum | currency: "Bs."
+        }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+</div>
