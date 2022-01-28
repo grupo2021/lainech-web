@@ -41,6 +41,27 @@
         </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="stock">
+        <mat-header-cell *matHeaderCellDef>ACUMULADO</mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          {{ product.lotes | cantAcum }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sold">
+        <mat-header-cell *matHeaderCellDef>VENDIDO</mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          {{ product.lotes | cantOutAcum }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="available">
+        <mat-header-cell *matHeaderCellDef>DISPONIBLE</mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          {{ product.lotes | cantOutAvailable }}
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row
         [routerLink]="['/products', row.id, 'view']"

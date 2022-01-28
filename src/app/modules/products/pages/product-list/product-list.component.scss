@@ -12,18 +12,28 @@
   border-color: currentColor;
 }
 
-.mat-column-name {
-  flex: 0 0 40%;
-  justify-content: start;
-}
+// .mat-column-name {
+//   flex: 0 0 40%;
+//   justify-content: start;
+// }
 
-.mat-column-code {
-  flex: 0 0 35%;
-  justify-content: start;
-}
+// .mat-column-code {
+//   flex: 0 0 35%;
+//   justify-content: start;
+// }
 
-.mat-column-profit {
-  flex: 0 0 20%;
+// .mat-column-profit {
+//   flex: 0 0 20%;
+//   justify-content: center;
+//   font-weight: bold;
+// }
+
+.mat-column-stock {
   justify-content: center;
-  font-weight: bold;
+}
+.mat-column-sold {
+  justify-content: center;
+}
+.mat-column-available {
+  justify-content: center;
 }

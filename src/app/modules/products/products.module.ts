@@ -17,6 +17,9 @@ import { ProductLoteFormComponent } from './components/product-lote-form/product
 import { ProductLotesListComponent } from './pages/product-lotes-list/product-lotes-list.component';
 import { ProductLotesNewComponent } from './pages/product-lotes-new/product-lotes-new.component';
 import { ProductLotesEditComponent } from './pages/product-lotes-edit/product-lotes-edit.component';
+import { CantAcumPipe } from './pipes/cant-acum.pipe';
+import { CantOutAcumPipe } from './pipes/cant-out-acum.pipe';
+import { CantOutAvailablePipe } from './pipes/cant-out-available.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { ProductLotesEditComponent } from './pages/product-lotes-edit/product-lo
     ProductLotesListComponent,
     ProductLotesNewComponent,
     ProductLotesEditComponent,
+    CantAcumPipe,
+    CantOutAcumPipe,
+    CantOutAvailablePipe,
   ],
   imports: [
     CommonModule,
