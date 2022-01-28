@@ -31,7 +31,6 @@ export class ProductsDataSource implements DataSource<Product> {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<Product[]> {
-    console.log('Connecting data source');
     return this.productsSubject.asObservable();
   }
 

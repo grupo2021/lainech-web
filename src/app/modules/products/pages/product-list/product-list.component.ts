@@ -24,6 +24,8 @@ export class ProductListComponent implements OnInit {
   take = 5;
   sortTable = 'ASC';
 
+  public size!: number;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -35,6 +37,8 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = new ProductsDataSource(this.productService);
     this.dataSource.loadExpenses('', this.sortTable, this.page, this.take);
+
+    this.dataSource.size$.subscribe((res) => (this.size = res));
   }
 
   ngAfterViewInit() {
