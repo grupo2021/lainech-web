@@ -55,6 +55,7 @@ export class UserProfileFormComponent implements OnInit {
 
   public onSubmit() {
     if (this.form.invalid) {
+      this.form.markAllAsTouched();
       return;
     }
     const { name, surname, address, phones, identificationNumber, photo } =
@@ -109,9 +110,12 @@ export class UserProfileFormComponent implements OnInit {
   private createForm() {
     this.form = this.fb.group({
       name: [this.user.profile.name, Validators.required],
-      surname: [this.user.profile.surname],
-      address: [this.user.profile.address],
-      identificationNumber: [this.user.profile.identificationNumber],
+      surname: [this.user.profile.surname, Validators.required],
+      address: [this.user.profile.address, Validators.required],
+      identificationNumber: [
+        this.user.profile.identificationNumber,
+        Validators.required,
+      ],
       phones: this.fb.array(
         this.user.profile.phones
           ? this.createFormControls(JSON.parse(this.user.profile.phones))
@@ -124,5 +128,17 @@ export class UserProfileFormComponent implements OnInit {
 
   private createFormControls(phones: number[]) {
     return phones.map((p) => [p, [Validators.pattern(this.phonePattern)]]);
+  }
+
+  invalidField(field: string) {
+    return this.form.get(field)?.invalid && this.form.get(field)?.touched;
+  }
+
+  get photoError(): string {
+    const errors = this.form.get('photo')!.errors;
+    if (errors!['required']) {
+      return 'La imagen es obligatoria';
+    }
+    return '';
   }
 }

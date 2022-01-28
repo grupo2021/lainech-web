@@ -1,5 +1,10 @@
 <div class="edit_title_container">
-  <h2>Modifica este usuario</h2>
+  <div class="edit_detail_container">
+    <h2>Modifica el perfil de este usuario</h2>
+    <p><strong>Email: </strong> {{ user.email }}</p>
+    <p><strong>Rol: </strong> {{ user.role }}</p>
+  </div>
+
   <button mat-raised-button color="primary" routerLink="../view">VOLVER</button>
 </div>
 <ng-container *ngIf="user">
