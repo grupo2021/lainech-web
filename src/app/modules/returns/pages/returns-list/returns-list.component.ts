@@ -40,6 +40,8 @@ export class ReturnsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('keyword') keyword!: ElementRef;
 
+  public size!: number;
+
   constructor(
     private returnsService: ReturnsService,
     private store: Store<AppState>
@@ -54,6 +56,7 @@ export class ReturnsListComponent implements OnInit, OnDestroy, AfterViewInit {
       this.take,
       this.column
     );
+    this.dataSource.size$.subscribe((res) => (this.size = res));
   }
 
   ngAfterViewInit() {

@@ -35,6 +35,8 @@ export class ReloadListComponent implements OnInit {
 
   @ViewChild('keyword') keyword!: ElementRef;
 
+  public size!: number;
+
   private auth!: User | null;
   private authSubs!: Subscription;
 
@@ -67,6 +69,8 @@ export class ReloadListComponent implements OnInit {
         );
       }
     });
+
+    this.dataSource.size$.subscribe((res) => (this.size = res));
   }
 
   ngAfterViewInit() {

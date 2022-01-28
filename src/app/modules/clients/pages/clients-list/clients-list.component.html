@@ -8,45 +8,51 @@
     <mat-spinner></mat-spinner>
   </div>
 
-  <mat-table
-    [dataSource]="dataSource"
-    matSort
-    matSortActive="trade_name"
-    matSortDirection="asc"
-    matSortDisableClear
-  >
-    <ng-container matColumnDef="trade_name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        NEGOCIO
-      </mat-header-cell>
-      <mat-cell *matCellDef="let client">
-        {{ client.trade_name | uppercase }}
-      </mat-cell>
-    </ng-container>
+  <div *ngIf="size < 1">
+    <h2>No exisiten coincidencias!</h2>
+  </div>
 
-    <ng-container matColumnDef="type">
-      <mat-header-cell *matHeaderCellDef> TIPO </mat-header-cell>
-      <mat-cell *matCellDef="let client">{{ client.type }}</mat-cell>
-    </ng-container>
+  <div [ngClass]="size < 1 ? 'd-none' : ''">
+    <mat-table
+      [dataSource]="dataSource"
+      matSort
+      matSortActive="trade_name"
+      matSortDirection="asc"
+      matSortDisableClear
+    >
+      <ng-container matColumnDef="trade_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          NEGOCIO
+        </mat-header-cell>
+        <mat-cell *matCellDef="let client">
+          {{ client.trade_name | uppercase }}
+        </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="owner">
-      <mat-header-cell *matHeaderCellDef> PROPIETARIO </mat-header-cell>
-      <mat-cell *matCellDef="let client">
-        {{ client.name }} {{ client.surname }}
-      </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef> TIPO </mat-header-cell>
+        <mat-cell *matCellDef="let client">{{ client.type }}</mat-cell>
+      </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row
-      [routerLink]="['/clients', row.id, 'view']"
-      *matRowDef="let row; columns: displayedColumns"
-    ></mat-row>
-  </mat-table>
+      <ng-container matColumnDef="owner">
+        <mat-header-cell *matHeaderCellDef> PROPIETARIO </mat-header-cell>
+        <mat-cell *matCellDef="let client">
+          {{ client.name }} {{ client.surname }}
+        </mat-cell>
+      </ng-container>
 
-  <mat-paginator
-    [length]="dataSource.size$ | async"
-    [pageSize]="take"
-    [pageSizeOptions]="[5, 10, 15]"
-    showFirstLastButtons
-  ></mat-paginator>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        [routerLink]="['/clients', row.id, 'view']"
+        *matRowDef="let row; columns: displayedColumns"
+      ></mat-row>
+    </mat-table>
+
+    <mat-paginator
+      [length]="dataSource.size$ | async"
+      [pageSize]="take"
+      [pageSizeOptions]="[5, 10, 15]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
 </div>

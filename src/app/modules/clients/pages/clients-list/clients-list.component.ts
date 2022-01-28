@@ -30,11 +30,14 @@ export class ClientsListComponent implements OnInit {
 
   @ViewChild('keyword') keyword!: ElementRef;
 
+  public size!: number;
+
   constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
     this.dataSource = new ClientesDataSouce(this.clientService);
     this.dataSource.loadExpenses('', this.sortTable, this.page, this.take);
+    this.dataSource.size$.subscribe((res) => (this.size = res));
   }
 
   ngAfterViewInit() {

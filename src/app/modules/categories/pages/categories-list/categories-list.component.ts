@@ -30,11 +30,14 @@ export class CategoriesListComponent implements OnInit {
 
   @ViewChild('keyword') keyword!: ElementRef;
 
+  public size!: number;
+
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
     this.dataSource = new CategoriesDataSource(this.categoryService);
     this.dataSource.loadExpenses('', this.sortTable, this.page, this.take);
+    this.dataSource.size$.subscribe((res) => (this.size = res));
   }
 
   ngAfterViewInit() {

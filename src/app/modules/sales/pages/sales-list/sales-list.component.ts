@@ -31,6 +31,8 @@ export class SalesListComponent implements OnInit {
 
   @ViewChild('keyword') keyword!: ElementRef;
 
+  public size!: number;
+
   constructor(private saleService: SaleService) {}
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class SalesListComponent implements OnInit {
       this.take,
       this.column
     );
+    this.dataSource.size$.subscribe((res) => (this.size = res));
   }
 
   ngAfterViewInit() {

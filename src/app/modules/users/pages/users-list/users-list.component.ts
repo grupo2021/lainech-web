@@ -30,11 +30,14 @@ export class UsersListComponent implements OnInit {
 
   @ViewChild('keyword') keyword!: ElementRef;
 
+  public size!: number;
+
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.dataSource = new UsersDataSource(this.userService);
     this.dataSource.loadExpenses('', this.sortTable, this.page, this.take);
+    this.dataSource.size$.subscribe((res) => (this.size = res));
   }
 
   ngAfterViewInit() {

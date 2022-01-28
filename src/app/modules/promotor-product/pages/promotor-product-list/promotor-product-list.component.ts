@@ -31,6 +31,8 @@ export class PromotorProductListComponent implements OnInit {
 
   @ViewChild('keyword') keyword!: ElementRef;
 
+  public size!: number;
+
   constructor(private promotorProductService: PromotorProductService) {}
 
   ngOnInit(): void {
@@ -44,6 +46,7 @@ export class PromotorProductListComponent implements OnInit {
       this.take,
       this.column
     );
+    this.dataSource.size$.subscribe((res) => (this.size = res));
   }
 
   ngAfterViewInit() {
