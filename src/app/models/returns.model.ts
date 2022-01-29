@@ -10,6 +10,7 @@ export class Returns {
     status,
     description,
     cancelled_description,
+    approve_description,
     promotorProduct,
   }: any) {
     return new Returns(
@@ -21,6 +22,7 @@ export class Returns {
       status,
       description,
       cancelled_description,
+      approve_description,
       promotorProduct
     );
   }
@@ -32,7 +34,8 @@ export class Returns {
     public cant: number,
     public status: string,
     public description: string,
-    public cancelled_description: string,
+    public cancelled_description: string | null,
+    public approve_description: string | null,
     public promotorProduct: PromotorProduct
   ) {}
 }

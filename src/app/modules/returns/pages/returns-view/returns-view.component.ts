@@ -79,14 +79,27 @@ export class ReturnsViewComponent implements OnInit, OnDestroy {
   }
 
   public approve() {
-    const dialog = this.matDialog.open(ConfirmDialogComponent, {
-      data: { content: '¿Está seguro de aprobar esta devolución?' },
+    const dialog = this.matDialog.open(CandelDialogComponent, {
+      data: { content: '¿Por qué aprueba esta devolución?' },
     });
+
     dialog.afterClosed().subscribe((result) => {
+      if (result === undefined) {
+        this.matDialog.open(AlertComponent, {
+          data: {
+            title: 'Oops',
+            content: '¡El motivo para aprobar esta devolución es necesario!',
+          },
+        });
+        return;
+      }
+
+      if (!result) {
+        return;
+      }
       if (result) {
-        this.store.dispatch(initLoading());
         this.returnsService
-          .changeStatus(this.returns.id, 'APROBADO')
+          .changeStatus(this.returns.id, 'APROBADO', result)
           .subscribe({
             next: (res) => {
               this.store.dispatch(stopLoading());

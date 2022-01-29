@@ -32,7 +32,11 @@
       </div>
       <p><strong>Motivo de la devolución: </strong>{{ returns.description }}</p>
       <p *ngIf="returns.cancelled_description">
-        <strong>Anulado por: </strong>{{ returns.cancelled_description }}
+        <strong>Motivo de anulación: </strong>
+        {{ returns.cancelled_description }}
+      </p>
+      <p *ngIf="returns.approve_description">
+        <strong>Motivo de aprobación: </strong>{{ returns.approve_description }}
       </p>
     </mat-card-content>
 

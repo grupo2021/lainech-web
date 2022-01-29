@@ -49,18 +49,12 @@ export class ReturnsService {
       .pipe(map((res) => Returns.fromJson(res)));
   }
 
-  changeStatus(id: number, status: string, cancelled_description?: string) {
-    if (status === 'APROBADO') {
-      return this.http
-        .put(`${this.url}/${id}`, { status })
-        .pipe(map((res) => Returns.fromJson(res)));
-    } else {
-      return this.http
-        .put(`${this.url}/${id}`, {
-          status,
-          cancelled_description: cancelled_description?.toUpperCase(),
-        })
-        .pipe(map((res) => Returns.fromJson(res)));
-    }
+  changeStatus(id: number, status: string, description: string) {
+    return this.http
+      .put(`${this.url}/${id}`, {
+        status,
+        description: description.toUpperCase(),
+      })
+      .pipe(map((res) => Returns.fromJson(res)));
   }
 }
