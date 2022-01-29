@@ -7,7 +7,10 @@
   <button mat-icon-button (click)="sidebarToogle()">
     <mat-icon *ngIf="isLogged">menu</mat-icon>
   </button>
-  <span>LIFE</span>
+  <div class="title_container">
+    <p>LIFE</p>
+    <p>{{ user?.name }} - {{ user?.role }}</p>
+  </div>
   <button mat-icon-button [routerLink]="['/auth']" *ngIf="!isLogged">
     <mat-icon>person</mat-icon>
   </button>
