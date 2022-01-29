@@ -33,6 +33,15 @@
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
       <button
         mat-raised-button
+        color="accent"
+        routerLink="../renew"
+        *ngIf="isActive"
+      >
+        Cambiar contraseña
+      </button>
+
+      <button
+        mat-raised-button
         color="warn"
         (click)="changestatus()"
         *ngIf="isActive"

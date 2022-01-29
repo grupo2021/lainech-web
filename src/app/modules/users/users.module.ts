@@ -12,9 +12,10 @@ import { UsersViewComponent } from './pages/users-view/users-view.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
 import { UserProfileFormComponent } from './components/user-profile-form/user-profile-form.component';
 import { UsersProfilePhotoComponent } from './components/users-profile-photo/users-profile-photo.component';
+import { UsersRenewComponent } from './pages/users-renew/users-renew.component';
 
 @NgModule({
-  declarations: [UsersComponent, UsersListComponent, UsersNewComponent, UsersViewComponent, UsersEditComponent, UserProfileFormComponent, UsersProfilePhotoComponent],
+  declarations: [UsersComponent, UsersListComponent, UsersNewComponent, UsersViewComponent, UsersEditComponent, UserProfileFormComponent, UsersProfilePhotoComponent, UsersRenewComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

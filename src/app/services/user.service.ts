@@ -57,4 +57,10 @@ export class UserService {
       .get<[]>(`${this.url}/all/promotors`)
       .pipe(map((res) => res.map((r) => UserSmall.fromJson(r))));
   }
+
+  public changePass(password: string, userId: number) {
+    return this.http
+      .put(`${this.url}/change`, { password, userId })
+      .pipe(map((res) => User.fromJson(res)));
+  }
 }

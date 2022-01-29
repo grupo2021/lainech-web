@@ -1,0 +1,73 @@
+<div *ngIf="user" class="container">
+  <div class="details">
+    <div>
+      <h2>{{ user.name | uppercase }}</h2>
+      <p><strong>Email: </strong>{{ user.email }}</p>
+      <p><strong>Rol: </strong> {{ user.role }}</p>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+    <mat-form-field appearance="outline">
+      <mat-label>Nueva contraseña</mat-label>
+      <input
+        matInput
+        formControlName="password"
+        [type]="hidePassword ? 'password' : 'text'"
+      />
+      <button
+        type="button"
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePassword"
+      >
+        <mat-icon>{{
+          hidePassword ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+      <mat-error *ngIf="invalidField('password')">{{
+        passwordError
+      }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Repite la contraseña</mat-label>
+      <input
+        matInput
+        formControlName="confirmation"
+        [type]="hideConfirmation ? 'password' : 'text'"
+      />
+      <button
+        type="button"
+        mat-icon-button
+        matSuffix
+        (click)="hideConfirmation = !hideConfirmation"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hideConfirmation"
+      >
+        <mat-icon>{{
+          hideConfirmation ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+
+      <mat-error *ngIf="invalidField('confirmation')">{{
+        confirmationError
+      }}</mat-error>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px">
+      <button mat-raised-button color="primary" type="submit">
+        Cambiar contraseña
+      </button>
+      <button
+        type="button"
+        mat-raised-button
+        [routerLink]="['/users', user.id, 'view']"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>
