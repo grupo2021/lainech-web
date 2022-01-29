@@ -25,7 +25,9 @@ export class ClientImageComponent implements OnInit, ControlValueAccessor {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.initialValue);
+  }
 
   writeValue(photo: string): void {
     if (photo) {

@@ -7,7 +7,16 @@
   </mat-card-header>
   <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="16px">
     <div class="image_container">
-      <img src="assets/no-user.svg" alt="photo" />
+      <img
+        *ngIf="client.image === 'www.noimage.com'"
+        src="assets/no-user.svg"
+        alt="photo"
+      />
+      <img
+        *ngIf="client.image !== 'www.noimage.com'"
+        [src]="client.image"
+        alt="photo"
+      />
     </div>
     <mat-card-content>
       <h2>Datos del cliente</h2>

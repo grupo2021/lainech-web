@@ -42,21 +42,35 @@ export class ClientService {
     type: string,
     sale_point: string,
     person_charge: string,
-    phone_person_charge: string
+    phone_person_charge: string,
+    image: File
   ) {
+    const formData = new FormData();
+
+    formData.append('name', name.toUpperCase());
+    formData.append('surname', surname.toUpperCase());
+    formData.append('address', address.toUpperCase());
+    formData.append(
+      'identification_number',
+      identification_number.toUpperCase()
+    );
+    formData.append('phones', JSON.stringify(phones));
+    formData.append('trade_name', trade_name.toUpperCase());
+    formData.append('type', type.toUpperCase());
+    formData.append('sale_point', sale_point.toUpperCase());
+
+    if (person_charge) {
+      formData.append('person_charge', person_charge.toUpperCase());
+    }
+    if (phone_person_charge) {
+      formData.append('phone_person_charge', phone_person_charge);
+    }
+    if (image) {
+      formData.append('image', image);
+    }
+
     return this.http
-      .post(this.url, {
-        name,
-        surname,
-        address,
-        identification_number: identification_number.toUpperCase(),
-        phones: JSON.stringify(phones),
-        trade_name: trade_name.toUpperCase(),
-        type,
-        sale_point,
-        person_charge: person_charge.toUpperCase(),
-        phone_person_charge,
-      })
+      .post(this.url, formData)
       .pipe(map((res) => Client.fromJson(res)));
   }
 
@@ -71,21 +85,34 @@ export class ClientService {
     type: string,
     sale_point: string,
     person_charge: string,
-    phone_person_charge: string
+    phone_person_charge: string,
+    image: File
   ) {
+    const formData = new FormData();
+
+    formData.append('name', name.toUpperCase());
+    formData.append('surname', surname.toUpperCase());
+    formData.append('address', address.toUpperCase());
+    formData.append(
+      'identification_number',
+      identification_number.toUpperCase()
+    );
+    formData.append('phones', JSON.stringify(phones));
+    formData.append('trade_name', trade_name.toUpperCase());
+    formData.append('type', type.toUpperCase());
+    formData.append('sale_point', sale_point.toUpperCase());
+
+    if (person_charge) {
+      formData.append('person_charge', person_charge.toUpperCase());
+    }
+    if (phone_person_charge) {
+      formData.append('phone_person_charge', phone_person_charge);
+    }
+    if (image) {
+      formData.append('image', image);
+    }
     return this.http
-      .put(`${this.url}/${clientId}`, {
-        name,
-        surname,
-        address,
-        identification_number: identification_number.toUpperCase(),
-        phones: JSON.stringify(phones),
-        trade_name: trade_name.toUpperCase(),
-        type,
-        sale_point,
-        person_charge: person_charge.toUpperCase(),
-        phone_person_charge,
-      })
+      .put(`${this.url}/${clientId}`, formData)
       .pipe(map((res) => Client.fromJson(res)));
   }
 

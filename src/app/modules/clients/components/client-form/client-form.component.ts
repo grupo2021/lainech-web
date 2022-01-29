@@ -111,6 +111,7 @@ export class ClientFormComponent implements OnInit {
           : [],
         Validators.required
       ),
+      image: [this.client ? this.client.image : null],
     });
   }
 
@@ -130,6 +131,7 @@ export class ClientFormComponent implements OnInit {
       sale_point,
       person_charge,
       phone_person_charge,
+      image,
     } = this.form.value;
     this.clientService
       .create(
@@ -142,7 +144,8 @@ export class ClientFormComponent implements OnInit {
         type,
         sale_point,
         person_charge,
-        phone_person_charge
+        phone_person_charge,
+        image
       )
       .subscribe({
         next: (client) => {
@@ -174,6 +177,7 @@ export class ClientFormComponent implements OnInit {
       sale_point,
       person_charge,
       phone_person_charge,
+      image,
     } = this.form.value;
 
     this.clientService
@@ -188,7 +192,8 @@ export class ClientFormComponent implements OnInit {
         type,
         sale_point,
         person_charge,
-        phone_person_charge
+        phone_person_charge,
+        image
       )
       .subscribe({
         next: (client) => {
