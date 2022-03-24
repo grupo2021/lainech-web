@@ -26,19 +26,24 @@
       </ng-container>
 
       <ng-container matColumnDef="total">
-        <mat-header-cell *matHeaderCellDef> TOTAL ACUMULADO </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{
-          row.total | currency: "Bs."
-        }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef> TOTAL </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.total | currency: "Bs." }}
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="cant">
-        <mat-header-cell *matHeaderCellDef>
-          CANTIDAD ACUMULADA
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{
-          row.cant | number: "1.2"
-        }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef> CANTIDAD </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.cant | number: "1.2" }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="percentage">
+        <mat-header-cell *matHeaderCellDef> PORCENTAJE </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.cant / totalAcum | percent: "1.2" }}
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="product">

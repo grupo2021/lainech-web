@@ -12,10 +12,9 @@
   flex: 0 0 10%;
 }
 
-.mat-column-total {
+.mat-column-total,
+.mat-column-cant,
+.mat-column-percentage {
   flex: 0 0 10%;
-}
-
-.mat-column-cant {
-  flex: 0 0 10%;
+  justify-content: center;
 }

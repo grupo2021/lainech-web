@@ -8,10 +8,18 @@ import { BestProductReport } from 'src/app/models/best-product-report.model';
 })
 export class ReportBestProductComponent implements OnInit {
   @Input() bestProducts!: BestProductReport[];
+  public totalAcum!: number;
 
-  public displayedColumns = ['product', 'cant_acum', 'total_acum'];
+  public displayedColumns = [
+    'product',
+    'cant_acum',
+    'total_acum',
+    'percentage',
+  ];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.totalAcum = this.bestProducts.reduce((a, i) => a + i.cant_acum, 0);
+  }
 }
