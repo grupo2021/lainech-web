@@ -62,4 +62,8 @@ export class SaleService {
       .post(`${this.url}/cancelled/${id}`, {})
       .pipe(map((res) => Sale.fromJson(res)));
   }
+
+  public pendingCount() {
+    return this.http.get<number>(`${this.url}/pending-count`);
+  }
 }

@@ -17,7 +17,7 @@
       [dataSource]="dataSource"
       matSort
       matSortActive="date"
-      matSortDirection="asc"
+      matSortDirection="desc"
       matSortDisableClear
     >
       <ng-container matColumnDef="date">
@@ -50,7 +50,11 @@
           ESTADO
         </mat-header-cell>
         <mat-cell *matCellDef="let sale">
-          {{ sale.status }}
+          <mat-chip-list>
+            <mat-chip selected [color]="getStatusColor(sale.status)">
+              {{ sale.status }}
+            </mat-chip>
+          </mat-chip-list>
         </mat-cell>
       </ng-container>
 

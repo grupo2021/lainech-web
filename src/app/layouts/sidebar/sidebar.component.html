@@ -58,6 +58,10 @@
     [routerLink]="['/sales']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
+    [matBadge]="salesPendings"
+    [matBadgeHidden]="salesPendings === 0"
+    matBadgePosition="after"
+    matBadgeColor="accent"
   >
     {{ isPromotor ? "MIS VENTAS" : "VENTAS REALIZADAS" }}
   </button>
@@ -67,6 +71,10 @@
     [routerLink]="['/reload']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
+    [matBadge]="reloadPendings"
+    [matBadgeHidden]="reloadPendings === 0"
+    matBadgePosition="after"
+    matBadgeColor="accent"
   >
     {{ isPromotor ? "MIS RECARGAS" : "RECARGAS DE REALIZADAS" }}
   </button>
@@ -96,6 +104,10 @@
     [routerLink]="['/returns']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
+    [matBadge]="returnsPendings"
+    [matBadgeHidden]="returnsPendings === 0"
+    matBadgePosition="after"
+    matBadgeColor="accent"
   >
     DEVOLUCIONES
   </button>

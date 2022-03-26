@@ -26,7 +26,7 @@ export class ReloadListComponent implements OnInit {
 
   page = 0;
   take = 5;
-  sortTable = 'ASC';
+  sortTable = 'DESC';
   column = 'date';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -115,5 +115,22 @@ export class ReloadListComponent implements OnInit {
         this.sort.active
       );
     }
+  }
+
+  public getColor(state: string) {
+    let color = 'primary';
+    switch (state) {
+      case 'PENDIENTE':
+        color = 'accent';
+        break;
+      case 'APROBADO':
+        color = 'primary';
+        break;
+      case 'ANULADO':
+        color = 'warn';
+        break;
+    }
+
+    return color;
   }
 }

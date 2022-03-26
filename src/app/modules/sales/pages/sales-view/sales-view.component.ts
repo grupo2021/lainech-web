@@ -8,6 +8,7 @@ import { ConfirmDialogComponent } from 'src/app/layouts/confirm-dialog/confirm-d
 import { Sale } from 'src/app/models/sale.model';
 import { User } from 'src/app/models/user.model';
 import { SaleService } from 'src/app/services/sale.service';
+import { substractPending } from 'src/app/state/actions/pending.action';
 import { initLoading, stopLoading } from 'src/app/state/actions/ui.action';
 import { AppState } from 'src/app/state/app.reducer';
 
@@ -101,6 +102,7 @@ export class SalesViewComponent implements OnInit, OnDestroy {
         this.saleService.cancelled(this.sale.id).subscribe({
           next: (res) => {
             this.store.dispatch(stopLoading());
+            this.store.dispatch(substractPending({ pendingType: 'sells' }));
             this.sale = res;
           },
           error: (e) => {
@@ -128,6 +130,7 @@ export class SalesViewComponent implements OnInit, OnDestroy {
         this.saleService.approve(this.sale.id).subscribe({
           next: (res) => {
             this.store.dispatch(stopLoading());
+            this.store.dispatch(substractPending({ pendingType: 'sells' }));
             this.sale = res;
           },
           error: (e) => {

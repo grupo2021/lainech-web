@@ -17,7 +17,6 @@ import {
   tap,
 } from 'rxjs';
 import { ReturnsService } from 'src/app/services/returns.service';
-import { AppState } from 'src/app/state/app.reducer';
 import { ReturnsDataSource } from './returns-datasource';
 
 @Component({
@@ -31,7 +30,7 @@ export class ReturnsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   page = 0;
   take = 5;
-  sortTable = 'ASC';
+  sortTable = 'DESC';
   column = 'date';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -42,10 +41,7 @@ export class ReturnsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public size!: number;
 
-  constructor(
-    private returnsService: ReturnsService,
-    private store: Store<AppState>
-  ) {}
+  constructor(private returnsService: ReturnsService) {}
 
   ngOnInit(): void {
     this.dataSource = new ReturnsDataSource(this.returnsService);
@@ -79,6 +75,22 @@ export class ReturnsListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {}
+
+  public getStatusColor(status: string) {
+    let color = 'primary';
+    switch (status) {
+      case 'PENDIENTE':
+        color = 'accent';
+        break;
+      case 'APROBADO':
+        color = 'primary';
+        break;
+      case 'ANULADO':
+        color = 'warn';
+        break;
+    }
+    return color;
+  }
 
   private loadExpensesPage() {
     this.dataSource.loadExpenses(

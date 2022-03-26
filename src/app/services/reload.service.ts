@@ -14,7 +14,7 @@ export class ReloadService {
 
   public getAll(
     keyword: string = '',
-    sort: string = 'ASC',
+    sort: string = 'DESC',
     page: number = 0,
     take: number = 10,
     column: string = 'date'
@@ -38,7 +38,7 @@ export class ReloadService {
 
   public getAllByUser(
     keyword: string = '',
-    sort: string = 'ASC',
+    sort: string = 'DESC',
     page: number = 0,
     take: number = 10,
     column: string = 'date'
@@ -90,5 +90,9 @@ export class ReloadService {
     return this.http
       .post(`${this.url}/change/cancelled/${id}`, { return_description })
       .pipe(map((res) => Reload.fromJson(res)));
+  }
+
+  public getPendings(userId: number) {
+    return this.http.get<number>(`${this.url}/pending-count/${userId}`);
   }
 }

@@ -7,6 +7,7 @@ import { authReducer, AuthState } from './reducers/auth.reducer';
 import { sellReducer, SellState } from './reducers/sell.reducer';
 import { productReducer, ProductState } from './reducers/product.reducer';
 import { uiReducer, UiState } from './reducers/ui.reducer';
+import { pendingReducer, PendingState } from './reducers/pending.reducer';
 
 export interface AppState {
   auth: AuthState;
@@ -14,6 +15,7 @@ export interface AppState {
   product: ProductState;
   productStock: ProductsStockState;
   sell: SellState;
+  pending: PendingState;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
@@ -22,4 +24,5 @@ export const appReducers: ActionReducerMap<AppState> = {
   product: productReducer,
   productStock: productStockReducer,
   sell: sellReducer,
+  pending: pendingReducer,
 };

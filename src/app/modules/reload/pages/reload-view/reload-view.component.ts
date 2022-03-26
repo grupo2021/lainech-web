@@ -10,6 +10,7 @@ import { ConfirmDialogComponent } from 'src/app/layouts/confirm-dialog/confirm-d
 import { Reload } from 'src/app/models/reload.model';
 import { User } from 'src/app/models/user.model';
 import { ReloadService } from 'src/app/services/reload.service';
+import { substractPending } from 'src/app/state/actions/pending.action';
 import { initLoading, stopLoading } from 'src/app/state/actions/ui.action';
 import { AppState } from 'src/app/state/app.reducer';
 
@@ -89,6 +90,7 @@ export class ReloadViewComponent implements OnInit, OnDestroy {
         this.reloadService.approve(this.reload.id).subscribe({
           next: (res) => {
             this.store.dispatch(stopLoading());
+            this.store.dispatch(substractPending({ pendingType: 'reloads' }));
             this.reload = res;
           },
           error: (e) => {
@@ -140,6 +142,9 @@ export class ReloadViewComponent implements OnInit, OnDestroy {
               .subscribe({
                 next: (res) => {
                   this.store.dispatch(stopLoading());
+                  this.store.dispatch(
+                    substractPending({ pendingType: 'reloads' })
+                  );
                   this.reload = res;
                 },
                 error: (e) => {

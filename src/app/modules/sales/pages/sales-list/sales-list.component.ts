@@ -22,7 +22,7 @@ export class SalesListComponent implements OnInit {
 
   page = 0;
   take = 5;
-  sortTable = 'ASC';
+  sortTable = 'DESC';
   column = 'date';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -76,5 +76,21 @@ export class SalesListComponent implements OnInit {
       this.paginator.pageSize,
       this.sort.active
     );
+  }
+
+  public getStatusColor(status: string) {
+    let color = 'primary';
+    switch (status) {
+      case 'PENDIENTE':
+        color = 'accent';
+        break;
+      case 'APROBADO':
+        color = 'primary';
+        break;
+      case 'ANULADO':
+        color = 'warn';
+        break;
+    }
+    return color;
   }
 }

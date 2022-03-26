@@ -9,6 +9,7 @@ import { ConfirmDialogComponent } from 'src/app/layouts/confirm-dialog/confirm-d
 import { Returns } from 'src/app/models/returns.model';
 import { User } from 'src/app/models/user.model';
 import { ReturnsService } from 'src/app/services/returns.service';
+import { substractPending } from 'src/app/state/actions/pending.action';
 import { initLoading, stopLoading } from 'src/app/state/actions/ui.action';
 import { AppState } from 'src/app/state/app.reducer';
 
@@ -103,6 +104,9 @@ export class ReturnsViewComponent implements OnInit, OnDestroy {
           .subscribe({
             next: (res) => {
               this.store.dispatch(stopLoading());
+              this.store.dispatch(
+                substractPending({ pendingType: 'devolutions' })
+              );
               this.returns = res;
             },
             error: (e) => {
@@ -145,6 +149,9 @@ export class ReturnsViewComponent implements OnInit, OnDestroy {
           .subscribe({
             next: (res) => {
               this.store.dispatch(stopLoading());
+              this.store.dispatch(
+                substractPending({ pendingType: 'devolutions' })
+              );
               this.returns = res;
             },
             error: (e) => {

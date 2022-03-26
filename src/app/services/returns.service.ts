@@ -57,4 +57,8 @@ export class ReturnsService {
       })
       .pipe(map((res) => Returns.fromJson(res)));
   }
+
+  public getPendings() {
+    return this.http.get<number>(`${this.url}/pending-count`);
+  }
 }
