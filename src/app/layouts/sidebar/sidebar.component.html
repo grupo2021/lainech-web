@@ -4,7 +4,7 @@
   </div>
 
   <button
-    mat-flat-button
+    mat-stroked-button
     *ngIf="isAdmin || isAlmacenero"
     [routerLink]="['/products']"
     routerLinkActive="active"
@@ -14,7 +14,7 @@
   </button>
 
   <button
-    mat-flat-button
+    mat-stroked-button
     *ngIf="isAdmin"
     [routerLink]="['/users']"
     routerLinkActive="active"
@@ -24,7 +24,7 @@
   </button>
 
   <button
-    mat-flat-button
+    mat-stroked-button
     *ngIf="isPromotor"
     [routerLink]="['/promotor-product']"
     routerLinkActive="active"
@@ -34,7 +34,7 @@
   </button>
 
   <button
-    mat-flat-button
+    mat-stroked-button
     *ngIf="isPromotor || isAdmin"
     [routerLink]="['/clients']"
     routerLinkActive="active"
@@ -44,16 +44,16 @@
   </button>
 
   <button
-    mat-flat-button
+    mat-stroked-button
     *ngIf="isAdmin"
     [routerLink]="['/categories']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
   >
-    CATEGORIAS
+    CATEGORÍAS
   </button>
   <button
-    mat-flat-button
+    mat-stroked-button
     *ngIf="isPromotor || isAdmin"
     [routerLink]="['/sales']"
     routerLinkActive="active"
@@ -67,7 +67,7 @@
   </button>
 
   <button
-    mat-flat-button
+    mat-stroked-button
     [routerLink]="['/reload']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
@@ -80,27 +80,27 @@
   </button>
 
   <button
-    mat-flat-button
+    mat-stroked-button
     *ngIf="isPromotor"
     [routerLink]="['/add-stock']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
   >
-    HACER UNA RECARGA
+    SOLICITAR RECARGA
   </button>
 
   <button
-    mat-flat-button
+    mat-stroked-button
     *ngIf="isPromotor"
     [routerLink]="['/sell']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
   >
-    HACER UNA VENTA
+    REALIZAR VENTA
   </button>
 
   <button
-    mat-flat-button
+    mat-stroked-button
     [routerLink]="['/returns']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: false }"
@@ -113,7 +113,7 @@
   </button>
 
   <button
-    mat-flat-button
+    mat-stroked-button
     *ngIf="isAdmin || isAlmacenero"
     [routerLink]="['/report']"
     routerLinkActive="active"

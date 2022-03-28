@@ -76,7 +76,7 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Telefono del encargado</mat-label>
+    <mat-label>Teléfono del encargado</mat-label>
     <input
       matInput
       placeholder="JUAN"
@@ -93,7 +93,7 @@
     style="width: 80%"
   >
     <mat-form-field appearance="fill">
-      <mat-label>Nuevo # telefono</mat-label>
+      <mat-label>Nuevo # teléfono</mat-label>
       <input
         matInput
         placeholder="70000000"
@@ -112,9 +112,9 @@
   </div>
 
   <div formArrayName="phones" style="width: 80%">
-    <mat-label>Telefonos del negocio:</mat-label>
+    <mat-label>Teléfonos del negocio:</mat-label>
     <ng-container *ngIf="!client?.phones">
-      <p>No hay telefonos registrados</p>
+      <p>No hay teléfonos registrados</p>
     </ng-container>
 
     <ng-container *ngFor="let phone of phones.controls; let i = index">
@@ -124,7 +124,7 @@
         fxLayoutGap="16px"
       >
         <mat-form-field appearance="fill">
-          <mat-label>Telefono: {{ i + 1 }}</mat-label>
+          <mat-label>Teléfono: {{ i + 1 }}</mat-label>
           <input matInput type="tel" [formControlName]="i" />
         </mat-form-field>
         <button mat-raised-button color="warn" (click)="removePhone(i)">
