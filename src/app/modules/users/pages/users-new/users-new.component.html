@@ -46,12 +46,12 @@
       formControlName="password"
     />
     <mat-icon matSuffix color="primary">password</mat-icon>
-    <mat-hint>Minimo 6 caracteres</mat-hint>
+    <mat-hint>Mínimo 6 caracteres</mat-hint>
     <mat-error *ngIf="invalidField('password')">{{ passwordError }}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Confirmacion</mat-label>
+    <mat-label>Confirmación</mat-label>
     <input
       matInput
       placeholder="************"
@@ -59,7 +59,7 @@
       formControlName="password2"
     />
     <mat-icon matSuffix color="primary">password</mat-icon>
-    <mat-hint>Contraseña y confirmacion deben ser iguales</mat-hint>
+    <mat-hint>Contraseña y confirmación deben ser iguales</mat-hint>
     <mat-error *ngIf="invalidField('password2')">
       {{ confirmationError }}
     </mat-error>

@@ -49,9 +49,9 @@
 
       <p><strong>Encargado: </strong> {{ client.person_charge }}</p>
       <p>
-        <strong>Telefono encargado: </strong> {{ client.phone_person_charge }}
+        <strong>Teléfono encargado: </strong> {{ client.phone_person_charge }}
       </p>
-      <p><strong>TELEFONOS: </strong></p>
+      <p><strong>TELÉFONOS: </strong></p>
       <mat-chip-list #chipList aria-label="Fruit selection">
         <mat-chip *ngFor="let phone of phones">
           {{ phone }}

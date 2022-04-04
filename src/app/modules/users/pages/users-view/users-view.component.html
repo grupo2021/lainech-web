@@ -12,7 +12,7 @@
       <h2>Datos personales</h2>
       <p><strong>C.I: </strong> {{ user.profile.identificationNumber }}</p>
       <p><strong>EMAIL: </strong> {{ user.email }}</p>
-      <p><strong>DIRECCION: </strong> {{ user.profile.address }}</p>
+      <p><strong>DIRECCIÓN: </strong> {{ user.profile.address }}</p>
       <p>
         <strong>Estado: </strong
         ><mat-chip>
@@ -20,7 +20,7 @@
         </mat-chip>
       </p>
 
-      <p><strong>TELEFONOS: </strong></p>
+      <p><strong>TELÉFONOS: </strong></p>
       <mat-chip-list #chipList aria-label="Fruit selection">
         <mat-chip *ngFor="let phone of phones">
           {{ phone }}
